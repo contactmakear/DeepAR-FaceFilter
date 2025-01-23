@@ -224,3 +224,33 @@ body {
     background-color: #eaeaea;
   }
 }
+
+.carousel{background: linear-gradient(89.64deg, rgba(223, 194, 58, 0.62) 0%, rgba(91, 153, 90, 0.62) 47%, rgba(188, 32, 38, 0.62) 100%);}
+.button-slider {
+  position: absolute;
+    display: flex;
+       flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    bottom: 20%;
+    
+    
+    transition: left 0.3s ease;
+    will-change: transform;
+}
+.button-slider .slides {
+  border: 10px solid rgba(217, 217, 217, 0.34);
+  width: 60px;
+  height: 60px;
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.button-slider .slides.active{
+  border: 10px solid rgb(255, 252, 252);
+}
