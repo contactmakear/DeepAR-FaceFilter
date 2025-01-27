@@ -34,7 +34,7 @@ app.use("/deepar-resources",
       }
     },
   })
-);
+)
 
 app.use('/', router)
 

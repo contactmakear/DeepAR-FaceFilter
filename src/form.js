@@ -20,7 +20,8 @@ export default function Form() {
             let otp = prompt("Please enter the OTP.")
             axios.post('/verify-otp', {
                 details: response.data.details,
-                userOTP: otp
+                userOTP: otp,
+                phone: phone
             }).then((response) => {
                 console.log(response.data)
                 if(response.data == 'Success') {

@@ -8,7 +8,7 @@ router.get('/ar', (req, res) => {
     res.render('ar')
 })
 
-router.post('/verify', userController.showOTPScreen)
-router.post('/verify-otp', userController.verifyPhone)
+router.post('/register', userController.register)
+// router.post('/verify-otp', userController.verifyPhone)
 
 module.exports = router;
