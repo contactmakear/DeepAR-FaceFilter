@@ -4,13 +4,21 @@
   "description": "Quickstart project for DeepAR Web.",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --config webpack.config.js --mode production && cp -r public/* dist && cp -r node_modules/deepar dist/deepar-resources",
-    "dev": "webpack serve --mode development --open --port 8889"
+    "dev": "run-p watch ourwebpack",
+    "ourwebpack": "webpack --watch --mode development",
+    "watch": "nodemon server.js",
+    "build": "rm -rf dist && webpack --config webpack.config.js --mode production && cp -r public/* dist && cp -r node_modules/deepar public/deepar-resources"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^5.74.0",
+    "@babel/core": "^7.26.7",
+    "@babel/preset-env": "^7.26.7",
+    "babel-loader": "^9.2.1",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^5.97.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.0"
   },

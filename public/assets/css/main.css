@@ -1,18 +1,18 @@
 @font-face {
     font-family: Gotham;
-    src: url(assets/font/Gotham-Black.otf);
+    src: url(../font/Gotham-Black.otf);
     font-weight: bold;
 }
 
 @font-face {
     font-family: Gotham-Light;
-    src: url(assets/font/GothamLight.ttf);
+    src: url(../font/GothamLight.ttf);
     font-weight: light;
 }
 
 @font-face {
     font-family: Gotham-Medium;
-    src: url(assets/font/GothamMedium.ttf);
+    src: url(../font/GothamMedium.ttf);
     font-weight: medium;
 }
 .landing-screen{display: none}
