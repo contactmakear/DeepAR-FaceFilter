@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "run-p watch ourwebpack",
     "ourwebpack": "webpack --watch --mode development",
-    "watch": "nodemon server.js",
+    "watch": "nodemon db.js",
     "build": "rm -rf dist && webpack --config webpack.config.js --mode production && cp -r public/* dist && cp -r node_modules/deepar public/deepar-resources"
   },
   "author": "",
@@ -23,6 +23,14 @@
     "webpack-dev-server": "^4.11.0"
   },
   "dependencies": {
-    "deepar": "^5.4.1"
+    "axios": "^1.7.9",
+    "connect-mongo": "^5.1.0",
+    "deepar": "^5.4.1",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.12.0",
+    "multer": "^1.4.5-lts.1",
+    "validator": "^13.12.0"
   }
 }
