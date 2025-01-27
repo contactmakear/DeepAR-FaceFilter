@@ -17,13 +17,12 @@ let sessionOptions = session({
 
 app.use(sessionOptions)
 
-// Serve static files from the public folder
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
 app.use(express.static(path.join(__dirname, "public")))
 
-// Set the view engine to EJS
 app.set("view engine", "ejs");
-
-// Set the directory for views
 app.set("views", path.join(__dirname, "views"));
 
 // Serve DeepAR resources

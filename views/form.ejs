@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Number verification with OTP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="stylesheet" href="form.css">
 </head>
 
@@ -32,9 +33,14 @@
             <div class="content">
                 <div class="form-container">
                     <h2>ENTER DETAILS</h2>
-                    <form id="detailsForm">
-                        <input type="text" placeholder="Enter Age*" required>
-                        <input type="tel" maxlength="10" placeholder="Enter 10-digit phone number"
+                    <form id="detailsForm" method="POST" action="/verify">
+                      <input class="phone" type="tel" maxlength="10" name="phone" placeholder="Enter 10-digit phone number">
+                      <button id="verifyOtpBtn" >submit</button>
+                    </form>
+                    <!-- TURN IT ON WHEN NEEDED (ACTUAL FORM) -->
+                    <!-- <form id="detailsForm" method="POST" action="/verify">
+                        <input type="text" placeholder="Enter Age*" name="age" required>
+                        <input type="tel" maxlength="10" name="phone" placeholder="Enter 10-digit phone number"
                             oninput="validatePhoneNumber(this)" required>
                         <div class="checkbox-group">
                             <input type="checkbox" required>
@@ -52,7 +58,7 @@
                             </label>
                         </div>
                         <button type="submit">GET OTP</button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
 
@@ -85,7 +91,8 @@
     </div>
 </body>
 <script>
-    const loading = document.getElementById("loading");
+
+const loading = document.getElementById("loading");
 const containerScene = document.getElementById("containerScene");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -190,6 +197,8 @@ verifyBtn.addEventListener("click", () => {
   verifyOTP();
   toggleVerifyButton();
 });
-</script>
 
+
+</script>
+<script src="main.js"></script>
 </html>

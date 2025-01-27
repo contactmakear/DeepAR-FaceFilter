@@ -1,19 +1,19 @@
 @font-face {
-    font-family: Gotham;
-    src: url(assets/font/Gotham-Black.otf);
-    font-weight: bold;
+  font-family: Gotham;
+  src: url(../assets/font/Gotham-Black.otf);
+  font-weight: bold;
 }
 
 @font-face {
-    font-family: Gotham-Light;
-    src: url(assets/font/GothamLight.ttf);
-    font-weight: light;
+  font-family: Gotham-Light;
+  src: url(../assets/font/GothamLight.ttf);
+  font-weight: light;
 }
 
 @font-face {
-    font-family: Gotham-Medium;
-    src: url(assets/font/GothamMedium.ttf);
-    font-weight: medium;
+  font-family: Gotham-Medium;
+  src: url(../assets/font/GothamMedium.ttf);
+  font-weight: medium;
 }
 .landing-screen{display: none}
 .details-screen{display: flex;}
@@ -21,37 +21,37 @@
 
 
 * {
-  padding: 0px;
-  margin: 0px;
-font-size: 32px;
+padding: 0px;
+margin: 0px;
+font-size: 18px;
 }
 
 h2{font-family: Gotham;}
 p{font-family:  Gotham-Light;
-padding: 10px;font-size: 30px;font-weight: 300;}
+padding: 10px;font-size: 14px;font-weight: 300;}
 button{font-family: Gotham-Medium;}
-input{font-family: Gotham-Light;font-weight: 300;font-size: 35px;}
-label{font-family:  Gotham-Light;font-size: 30px;font-weight: 300;   color: rgba(190, 190, 190, 1);
-  text-align: left; }
+input{font-family: Gotham-Light;font-weight: 300;font-size: 14px;}
+label{font-family:  Gotham-Light;font-size: 14px;font-weight: 300;   color: rgba(190, 190, 190, 1);
+text-align: left; }
 #containerScene{
-  display: none;
+display: none;
 }
 .loading-screen{
-    position: relative;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-       background-image: url("../images/loading_Bg.png");
-        background-size: cover;
-        /* Adjusts both images to cover the element */
-        background-position: center;
-        /* Adjust the positions of each image */
-        background-repeat: no-repeat;
-        /* Ensures images don’t repeat */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+     background-image: url("/images/loading_Bg.png");
+      background-size: cover;
+      /* Adjusts both images to cover the element */
+      background-position: center;
+      /* Adjust the positions of each image */
+      background-repeat: no-repeat;
+      /* Ensures images don’t repeat */
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
 }
 .img-loading{width: 100%;
 top: 10%;
@@ -59,77 +59,45 @@ position: absolute;}
 
 .landing-screen,
 .details-screen, .otp-screen {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 101vh;
-  background-image: url("../images/Final_bg.png");
-  background-size: cover;
-  /* Adjusts both images to cover the element */
-  background-position: center;
-  /* Adjust the positions of each image */
-  background-repeat: no-repeat;
-  /* Ensures images don’t repeat */
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
+position: relative;
+top: 0;
+left: 0;
+width: 100%;
+height: 101vh;
+background-image: url("/images/Final_bg.png");
+background-size: cover;
+/* Adjusts both images to cover the element */
+background-position: center;
+/* Adjust the positions of each image */
+background-repeat: no-repeat;
+/* Ensures images don’t repeat */
+/* display: flex; */
+justify-content: center;
+align-items: center;
 }
 
 .landing-container {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.75) 0%,
-    rgba(0, 0, 0, 0.394737) 23.4%,
-    rgba(0, 0, 0, 0) 49.4%,
-    rgba(0, 0, 0, 0.407608) 76.9%,
-    rgba(0, 0, 0, 0.75) 100%
-  );
-  opacity: 0.4;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
+height: 100%;
+width: 100%;
+background: linear-gradient(
+  180deg,
+  rgba(0, 0, 0, 0.75) 0%,
+  rgba(0, 0, 0, 0.394737) 23.4%,
+  rgba(0, 0, 0, 0) 49.4%,
+  rgba(0, 0, 0, 0.407608) 76.9%,
+  rgba(0, 0, 0, 0.75) 100%
+);
+opacity: 0.4;
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
 
 }
 .loader-container {
-    position: absolute;
-    bottom: 10%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.loader {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #f5c03e;
-  border-radius: 90%;
-  width: 70px;
-  height: 70px;
-  animation: spin 1s ease-in-out infinite;
-}
-/* Spinning animation */
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.img-container {
-  width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 10%;
   left: 0;
   right: 0;
   margin: auto;
@@ -138,102 +106,134 @@ position: absolute;}
   justify-content: center;
   flex-direction: column;
 }
+
+.loader {
+border: 6px solid #f3f3f3;
+border-top: 6px solid #f5c03e;
+border-radius: 90%;
+width: 70px;
+height: 70px;
+animation: spin 1s ease-in-out infinite;
+}
+/* Spinning animation */
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+.img-container {
+width: 100%;
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
 .img-text{width: 80%;
-    top: 15%;
-    position: fixed;
-    margin: 0 auto;}
+  top: 15%;
+  position: fixed;
+  margin: 0 auto;}
 .img-top,
 .img-bottom,
 .img-center {
-  width: 100%;
+width: 100%;
 }
 
 .img-top {
-  bottom: 40%;
-  position: absolute;
+bottom: 40%;
+position: absolute;
 }
 
 .img-center {
-  width: 100%;
-  bottom: 0px;
-  position: absolute;
+width: 100%;
+bottom: 0px;
+position: absolute;
 }
 .content {
-  width: 70%;
-  color: #fff;
-  text-align: center;
-  z-index: 3;
+width: 70%;
+color: #fff;
+text-align: center;
+z-index: 3;
 }
 .otp-content {height: 50%;}
 .input-container, #detailsForm {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+display: flex;
+flex-direction: column;
+gap: 10px;
 }
 #detailsForm{text-align: left;height: 50%;}
 h2 {
-  font-size: 60px;
-  margin: 40px;
+font-size: 18px;
+margin: 25px;
 }
 
- input[type="tel"],input[type="text"] {
-  color: rgba(190, 190, 190, 1);
-  background: rgba(37, 46, 42, 1);
-  border: 3px solid rgba(248, 214, 64, 1);
-  border-radius: 45px;
-  padding: 23px;
-  line-height: 16px;
-  size: letter;
+input[type="tel"],input[type="text"] {
+color: rgba(190, 190, 190, 1);
+background: rgba(37, 46, 42, 1);
+border: 3px solid rgba(248, 214, 64, 1);
+border-radius: 45px;
+padding: 10px;
+line-height: 16px;
+size: letter;
 }
 input[type="checkbox"]{
-    width: 40px;
-    height: 40px;
+  width: 20px;
+  height: 20px;
 }
 .checkbox input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }   
 .checkbox label {
-    padding-left: 22px;
-    cursor: pointer;
+  padding-left: 12px;
+  cursor: pointer;
 }
 input:-webkit-autofill{
-    background-color: rgba(37, 46, 42, 1);
-        color: rgba(190, 190, 190, 1);
+  background-color: rgba(37, 46, 42, 1);
+      color: rgba(190, 190, 190, 1);
 }
 
 input:-webkit-autofill:focus {
-    background-color: rgba(37, 46, 42, 1);
-    color: rgba(190, 190, 190, 1);
+  background-color: rgba(37, 46, 42, 1);
+  color: rgba(190, 190, 190, 1);
 }
 
 
 input:-webkit-autofill:focus::selection {
-    background-color: rgba(37, 46, 42, 1);
-    color: rgba(190, 190, 190, 1);
+  background-color: rgba(37, 46, 42, 1);
+  color: rgba(190, 190, 190, 1);
 }
 
 
 input:focus:not(:-webkit-autofill) {
-    background-color: rgba(37, 46, 42, 1);
-    color: rgba(190, 190, 190, 1);
+  background-color: rgba(37, 46, 42, 1);
+  color: rgba(190, 190, 190, 1);
 
 }
 button{
 width: 80%;
 margin: auto;
-margin-top: 29px;
+margin-top: 10px;
 cursor: pointer;
 display: flex;
 align-items: center;
 justify-content: center;
-padding: 30px;
+padding: 10px;
 
 border: 3px solid rgba(255, 255, 255, 1);
 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 background: rgba(221, 191, 59, 1);;
-font-size: 43px;
+font-size: 18px;
 color:  rgba(72, 72, 72, 1);;
 text-transform: uppercase;
 
@@ -247,63 +247,63 @@ transition-property: color;
 -webkit-transition-duration: 0.5s;
 transition-duration: 0.5s;}
 .form-container {
-    padding: 20px;
-    text-align: center;
-    width: 100%;
-    height: 100%;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
-.checkbox-group a{ display:flex;color:  #ccc;font-family:Gotham; font-size: 30px;}
+.checkbox-group a{ display:flex;color:  #ccc;font-family:Gotham; font-size: 14px;}
 
 .checkbox-group{
-    /* margin: 25px 25px 0px 25px; */
-    display: flex;
-      align-items: center;
-      gap: 10px;
+  /* margin: 25px 25px 0px 25px; */
+  display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #otp{
-    text-align: center;
+  text-align: center;
 }
 #otp input[type="text"]{
-    border-radius: 0px;
-    text-align: center;
-    margin: 25px;
+  border-radius: 0px;
+  text-align: center;
+  margin: 05px;
 }
 .inputs input {
-    width: 40px;
-    height: 40px
+  width: 20px;
+  height: 20px
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0
 }
 
 
 .form-control:focus {
-    box-shadow: none;
-    border: 2px solid red
+  box-shadow: none;
+  border: 2px solid red
 }
 
 .validate {
-    border-radius: 20px;
-    height: 40px;
-    background-color: red;
-    border: 1px solid red;
-    width: 140px
+  border-radius: 20px;
+  height: 40px;
+  background-color: red;
+  border: 1px solid red;
+  width: 140px
 }
 #otp input:focus-visible {
-  outline: 2px solid royalblue;
+outline: 2px solid royalblue;
 }
 
 #otp input.filled {
-  outline: 2px solid rgb(7, 192, 99);
+outline: 2px solid rgb(7, 192, 99);
 }
 #verifyBtn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+background-color: #ccc;
+cursor: not-allowed;
 }

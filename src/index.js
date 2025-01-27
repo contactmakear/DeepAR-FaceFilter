@@ -1,5 +1,10 @@
 import * as deepar from "deepar";
 import Carousel from "./carousel.js";
+import Form from './form'
+
+if (document.querySelector('form')) {
+  new Form()
+}
 
 // Log the version. Just in case.
 console.log("Deepar version: " + deepar.version);
