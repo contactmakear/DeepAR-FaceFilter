@@ -98,7 +98,6 @@ console.log("Deepar version: " + deepar.version);
       const newScreenshotCanvas = await takeScreenshot(deepAR, watermarkedCanvas)
 
       const userId = await getUserIdFromSession()
-      console.log(userId)
       if (!userId) {
         console.error("User not logged in!");
         return;
@@ -123,9 +122,10 @@ console.log("Deepar version: " + deepar.version);
     }
   })
 
+  // Fetch user ID from session
   async function getUserIdFromSession() {
     try {
-      const response = await axios.post("/get-user-id"); // Fetch user ID from session
+      const response = await axios.post("/get-user-id");
       return response.data.userId;
     } catch (error) {
       console.error("Error fetching user ID:", error);
