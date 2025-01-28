@@ -14,55 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Click event listeners for each slide
   slides.forEach((slide) => {
-    slide.addEventListener("click", () => {
-      const category = slide.getAttribute("data-category");
-
-      // Determine which slides to show based on category
-      if (category === "slide1") {
-        toolbarPhotos.forEach((photo, index) => {
-          if (index < 5) {
-            photo.style.display = "block";
-          } else {
-            photo.style.display = "none";
-          }
-        });
-      } else if (category === "slide2") {
-        toolbarPhotos.forEach((photo, index) => {
-          if (index >= 5) {
-            photo.style.display = "block";
-          } else {
-            photo.style.display = "none";
-          }
-        });
-      }
-
-      // Add 'active' class to the relevant photos
-      toolbarPhotos.forEach((photo) => {
-        photo.classList.remove("active");
-      });
-
-      if (category === "slide1") {
-        toolbarPhotos.forEach((photo, index) => {
-          if (index < 5) {
-            photo.classList.add("active");
-          }
-        });
-      } else if (category === "slide2") {
-        toolbarPhotos.forEach((photo, index) => {
-          if (index >= 5) {
-            photo.classList.add("active");
-          }
-        });
-      }
-
-      // Reset carousel position to the starting point
-      carouselInner.style.transform = `translate(128.6px)`;
-      carouselInner.style.transition = 'transform 0.3s'; // Apply smooth transition
-
-      // Add active class to highlight the current slide
-      slides.forEach((s) => s.classList.remove("active"));
-      slide.classList.add("active");
-    });
+    
   });
 
   // Initialize by showing the first category (optional)
@@ -136,7 +88,7 @@ console.log("Deepar version: " + deepar.version);
   };
 
   // Add Screenshot Functionality
-  const screenshotButton = document.getElementById("carousel-center");
+  const screenshotButton = document.getElementById("carousel-center-button");
 
   screenshotButton.addEventListener("click", async () => {
     try {

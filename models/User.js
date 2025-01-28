@@ -28,6 +28,7 @@ User.prototype.cleanUp = function() {
     //remove bogus properties
     this.data = {
         phone: this.data.phone,
+        profileImages: []
     }
 }
 
@@ -75,8 +76,10 @@ const updateUserProfileImage = async (userId, imagePath) => {
   try {
     const result = await usersCollection.updateOne(
       { _id: new ObjectId(userId) },
-      { $set: { profileImage: imagePath } }
-    );
+      {
+        $push: { profileImages: imagePath } 
+      }
+    )
 
     if (result.modifiedCount === 0) {
       throw new Error("User not found or image update failed.");
@@ -88,6 +91,6 @@ const updateUserProfileImage = async (userId, imagePath) => {
     console.error("Error updating user profile image:", error);
     throw error;
   }
-};
+}
 
 module.exports = { User, updateUserProfileImage }

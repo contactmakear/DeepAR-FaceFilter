@@ -67,28 +67,12 @@
         <button>LOGOUT</button>
       </form>
       <!-- <canvas class="deepar" id="deepar-canvas"></canvas> -->
-      <div class="button-slider">
+      <div class="button-slider" id="carousel-center-button">
         <div class="slides active" data-category="slide1">
-          <img class="responsive-img" width="80%" height="80%" src="thumbs/icon/Ellipse_1.png" />
-        </div>
-        <div class="slides" data-category="slide2">
-          <img class="responsive-img" width="80%" height="80%" src="thumbs/icon/Ellipse_2.png" />
+          <img class="responsive-img" width="80%" height="80%" src="images/Apple_Camera-512.webp" />
         </div>
       </div>
-      <div
-      id="toolbar"
-      style="
-        z-index: 200;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      "
-    >
+      <div id="toolbar">
      
       <!-- toolbar -->
       <div class="carousel" id="carousel">
@@ -136,54 +120,16 @@
         </div>
       </div>
       <div
-      id="share-screen"
-      class="fixed-fullscreen"
-      style="
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-      display: none;"
-    >
+      id="share-screen" class="fixed-fullscreen">
       <!-- close icon -->
-      <div
-        id="close-share-screen"
-        class="no-select"
-        style="
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          color: white;
-          cursor: pointer;
-          z-index: 300;
-          background-color: black;
-          border-radius: 100%;
-          width: 3rem;
-          height: 3rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
-      >
+      <div id="close-share-screen" class="no-select">
         <img
           src="images/interface-delete.svg"
           style="width: 1.5rem; height: 1.5rem"
         />
       </div>
-      <div id="share-image-container" style=" display: flex; justify-content: center; flex-grow: 1; max-height: 86%; width: 100%; "></div>
-      <div
-        style="
-          background-color: black;
-          padding: 0.6rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 60px;
-          width: 100%;
-        "
-      >
+      <div id="share-image-container"></div>
+      <button id="Download Photo" >Download Photo</button>
      
       </div>
     </div>
