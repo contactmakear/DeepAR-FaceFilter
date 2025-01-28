@@ -82,7 +82,7 @@ const updateUserProfileImage = async (userId, imagePath) => {
       throw new Error("User not found or image update failed.");
     }
 
-    console.log("User profile image updated:", imagePath);
+    // console.log("User profile image updated:", imagePath);
     return imagePath;
   } catch (error) {
     console.error("Error updating user profile image:", error);
