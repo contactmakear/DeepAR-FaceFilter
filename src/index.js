@@ -44,7 +44,7 @@ console.log("Deepar version: " + deepar.version);
     "effects/cap/cap3.deepar",
     "effects/cap/cap4.deepar",
     "effects/cap/cap2.deepar",
-    "effects//cap/cap1.deepar",
+    "effects/cap/cartry.deepar",
    
   ];
 
