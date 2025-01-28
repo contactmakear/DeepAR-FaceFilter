@@ -55,10 +55,7 @@ export const takeScreenshot = async (deepAR, watermarkCanvas) => {
     // Create an image element to display the screenshot
     const img = new Image();
     img.src = screenshotCanvas.toDataURL("image/jpeg");
-    img.style.margin = "51px 0px 0px 0px";
-    img.style.height = "65%";
-    img.style.width = "83%";
-    img.style.transform = "rotate(4deg)";
+    // img.style.width = "90%";
     imageContainer.appendChild(img);
   }
   

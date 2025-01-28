@@ -306,21 +306,31 @@ body {
       display: none;
       z-index: 200;
 }
-#share-image-container{
-  background-image: url("./images/frame_img.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-          justify-content: center;
-          flex-grow: 1;
-          max-height: 80%;
-          width: 90%;
+.photoframe{
+  position: absolute;
+  background-color: #eaeaea;
+  width: 80%;
+  height: 65%;
 
+  border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#share-image-container{
+  display: flex;
+  height: 70%;
+  /* width: 90%; */
+
+}
+.Download{    position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 button{
   width: 80%;
   margin: auto;
+  margin-bottom: 0px;
   margin-top: 10px;
   cursor: pointer;
   display: flex;
@@ -343,7 +353,9 @@ button{
   -webkit-transition-property: color;
   transition-property: color;
   -webkit-transition-duration: 0.5s;
-  transition-duration: 0.5s;}
+  transition-duration: 0.5s;
+  z-index: 200;
+  bottom: 20px;}
 
   .no-select{
     position: absolute; top: 1rem; right: 1rem; color: white;
@@ -357,4 +369,29 @@ button{
     justify-content: center;
     align-items: center;
   
+  }
+
+  .photoframe .head{   
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 35%;
+
+  }
+  .photoframe .glasses{
+    position: absolute;
+    right: 0px;
+    bottom: 45px;
+    width: 35%;
+  }
+  .photoframe .qube{
+    position: absolute;
+    left:  0px;
+    bottom: 45px;
+    width: 35%;
+  }
+  .photoframe .text_center{
+    position: absolute;
+    width: 80%;
+    bottom: 12px;
   }
