@@ -1,5 +1,6 @@
 const dotenv = require("dotenv").config();
 const { MongoClient } = require("mongodb");
+const port = process.env.PORT || 8080
 
 const client = new MongoClient(process.env.CONNECTIONSTRING);
 
@@ -11,8 +12,8 @@ async function start() {
 
     // Start the server
     const app = require("./server");
-    app.listen(process.env.PORT, () => {
-      console.log(`Server is live on port:${process.env.PORT}`);
+    app.listen(port, () => {
+      console.log(`Server is live on port:${port}`);
     });
   } catch (error) {
     console.error("Failed to connect to the database:", error.message);
