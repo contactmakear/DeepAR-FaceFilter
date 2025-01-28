@@ -39,6 +39,9 @@ app.use(express.static(path.join(__dirname, "public")))
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// Serve Static Files (Uploaded Images)
+app.use("/uploads", express.static("public/uploads"));
+
 // Serve DeepAR resources
 app.use("/deepar-resources",
   express.static(path.join(__dirname, "node_modules/deepar"), {
