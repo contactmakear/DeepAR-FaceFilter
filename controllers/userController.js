@@ -1,6 +1,7 @@
 const path = require("path")
 const axios = require('axios')
-const User = require('../models/User')
+const { User, updateUserProfileImage } = require('../models/User')
+const { processImage } = require("../src/imageHandler");
 const dotenv = require('dotenv').config()
 
 exports.home = function(req, res) {
@@ -8,6 +9,14 @@ exports.home = function(req, res) {
         res.render('ar')
     } else {
         res.render('form')
+    }
+}
+
+exports.getUserSession = (req, res) => {
+    if (req.session.user) {
+        res.json({ success: true, userId: req.session.user._id });
+    } else {
+        res.status(401).json({ success: false, message: "User not logged in" });
     }
 }
 
@@ -87,3 +96,23 @@ exports.logout = function (req, res) {
         res.redirect('/')
     })
 }
+
+// API to Upload and Update Profile Image
+exports.uploadProfileImage = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: "No file uploaded" });
+        }
+
+        // Compress the Image
+        const compressedImagePath = await processImage(req.file);
+
+        // Update User Profile in Database
+        const updatedImagePath = await updateUserProfileImage(req.body.userId, compressedImagePath);
+
+        res.json({ success: true, imagePath: updatedImagePath });
+    } catch (error) {
+        console.error("Upload error:", error);
+        res.status(500).json({ error: "Image upload failed" });
+    }
+};

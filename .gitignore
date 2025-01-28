@@ -5,3 +5,4 @@ package-lock.json
 .env
 /public/main.js
 /public/effects/cap/cap5.deepar
+/uploads

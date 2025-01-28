@@ -1,7 +1,8 @@
 import * as deepar from "deepar";
 import Carousel from "./carousel.js";
 import Form from "./form";
-import { takeScreenshot, displayScreenshot, loadImage } from "./camera.js"; // Assuming camera.js is created
+import { takeScreenshot, displayScreenshot, loadImage, base64ToBlob } from "./camera.js";
+import axios from 'axios'
 
 if (document.querySelector('.register-form')) {
   new Form()
@@ -91,10 +92,23 @@ console.log("Deepar version: " + deepar.version);
 
   screenshotButton.addEventListener("click", async () => {
     try {
-      const watermarkedCanvas = document.getElementById("watermark-canvas") || null; // Optional watermark
+      const watermarkedCanvas = document.getElementById("watermark-canvas") || null;  // Optional watermark
 
       // Capture Screenshot
-      const newScreenshotCanvas = await takeScreenshot(deepAR, watermarkedCanvas);
+      const newScreenshotCanvas = await takeScreenshot(deepAR, watermarkedCanvas)
+
+      const userId = await getUserIdFromSession()
+      console.log(userId)
+      if (!userId) {
+        console.error("User not logged in!");
+        return;
+      }
+
+      const imgFileBase64  =  newScreenshotCanvas.toDataURL("image/jpeg")
+
+      const imgBlob = base64ToBlob(imgFileBase64, "image/jpeg")
+      const file = new File([imgBlob], `social-capture-${Date.now()}.jpg`, { type: "image/jpeg" })
+      await uploadScreenshot(file, userId)
 
       // Display the Screenshot
       displayScreenshot(newScreenshotCanvas, "share-image-container");
@@ -107,9 +121,35 @@ console.log("Deepar version: " + deepar.version);
     } catch (error) {
       console.error("Error taking screenshot:", error);
     }
+  })
 
+  async function getUserIdFromSession() {
+    try {
+      const response = await axios.post("/get-user-id"); // Fetch user ID from session
+      return response.data.userId;
+    } catch (error) {
+      console.error("Error fetching user ID:", error);
+      return null;
+    }
+  }
 
-  });
+  async function uploadScreenshot(imageBlob, userId) {
+    const formData = new FormData();
+    formData.append("image", imageBlob, "profile.png");
+    formData.append("userId", userId);
+  
+    try {
+      const response = await axios.post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      // console.log("Uploaded Image Path:", response.data.imagePath);
+    } catch (error) {
+      console.error("Error uploading screenshot:", error);
+    }  
+  }
 
   const closeShareScreenButton = document.getElementById("close-share-screen");
 
@@ -121,7 +161,7 @@ console.log("Deepar version: " + deepar.version);
     if (typeof deepAR !== "undefined" && deepAR) {
       deepAR.setPaused(false);
     }
-  });
+  })
   
 
 

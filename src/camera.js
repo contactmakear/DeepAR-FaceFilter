@@ -37,7 +37,7 @@ export const takeScreenshot = async (deepAR, watermarkCanvas) => {
     }
   
     return newScreenshotCanvas;
-  };
+  }
   
   export const displayScreenshot = (screenshotCanvas, containerId) => {
     const imageContainer = document.getElementById(containerId);
@@ -60,7 +60,7 @@ export const takeScreenshot = async (deepAR, watermarkCanvas) => {
     img.style.width = "83%";
     img.style.transform = "rotate(4deg)";
     imageContainer.appendChild(img);
-  };
+  }
   
   // Utility function to load an image
   export const loadImage = async (url) =>
@@ -71,5 +71,22 @@ export const takeScreenshot = async (deepAR, watermarkCanvas) => {
       image.setAttribute("crossorigin", "anonymous");
       image.crossOrigin = "Anonymous";
       image.src = url;
-    });
+    })
   
+// Convert Base64 to Blob
+export const base64ToBlob = (base64, mimeType) => {
+  let byteCharacters = atob(base64.split(",")[1]);
+  let byteArrays = [];
+
+  for (let i = 0; i < byteCharacters.length; i += 512) {
+      let slice = byteCharacters.slice(i, i + 512);
+      let byteNumbers = new Array(slice.length);
+      for (let j = 0; j < slice.length; j++) {
+          byteNumbers[j] = slice.charCodeAt(j);
+      }
+      let byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+  }
+
+  return new Blob(byteArrays, { type: mimeType });
+}
