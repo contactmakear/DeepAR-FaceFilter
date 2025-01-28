@@ -1,3 +1,21 @@
+@font-face {
+  font-family: Gotham;
+  src: url(../assets/font/Gotham-Black.otf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Gotham-Light;
+  src: url(../assets/font/GothamLight.ttf);
+  font-weight: light;
+}
+
+@font-face {
+  font-family: Gotham-Medium;
+  src: url(../assets/font/GothamMedium.ttf);
+  font-weight: medium;
+}
+button{font-family: Gotham-Medium;}
 canvas.deepar {
   border: 0px none;
   background-color: black;
@@ -30,7 +48,7 @@ body {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
 }
 
 /* Carousel */
@@ -264,3 +282,79 @@ body {
 .toolbar-photo {
   display: none;
 }
+#toolbar{ z-index: 150;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;}
+
+#share-screen{
+  background-image: url("./images/background-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      display: none;
+      z-index: 200;
+}
+#share-image-container{
+  background-image: url("./images/frame_img.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+          justify-content: center;
+          flex-grow: 1;
+          max-height: 80%;
+          width: 90%;
+
+}
+button{
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  
+  border: 3px solid rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: rgba(221, 191, 59, 1);;
+  font-size: 18px;
+  color:  rgba(72, 72, 72, 1);;
+  text-transform: uppercase;
+  
+  border-radius: 50px;
+  overflow: hidden;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;}
+
+  .no-select{
+    position: absolute; top: 1rem; right: 1rem; color: white;
+    cursor: pointer;
+    z-index: 300;
+    background-color: black;
+    border-radius: 100%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
