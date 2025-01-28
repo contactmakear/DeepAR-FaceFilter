@@ -32,9 +32,13 @@
             <!-- <div class="landing-container"></div> -->
             <div class="content">
                 <div class="form-container">
+                  <% errors.forEach(function(message) { %>
+                    <div class="alert alert-danger text-center"><%- message %></div>
+                  <% }) %>
+
                     <h2>ENTER DETAILS</h2>
                     <!-- id="detailsForm" -->
-                    <form method="POST" action="/register">
+                    <form class="register-form" method="POST" action="/register">
                       <input class="phone" type="tel" maxlength="10" name="phone" placeholder="Enter 10-digit phone number">
                       <button id="verifyOtpBtn" >submit</button>
                     </form>

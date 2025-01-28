@@ -2,7 +2,7 @@ import * as deepar from "deepar";
 import Carousel from "./carousel.js";
 import Form from './form'
 
-if (document.querySelector('form')) {
+if (document.querySelector('.register-form')) {
   new Form()
 }
 

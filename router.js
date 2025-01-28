@@ -4,11 +4,10 @@ const userController = require('./controllers/userController')
 const router = express.Router()
 
 router.get('/', userController.home)
-router.get('/ar', (req, res) => {
-    res.render('ar')
-})
+// router.get('/ar', userController.openAR)
 
 router.post('/register', userController.register)
 // router.post('/verify-otp', userController.verifyPhone)
+router.post('/logout', userController.logout)
 
-module.exports = router;
+module.exports = router

@@ -4,6 +4,8 @@ const MongoStore = require('connect-mongo')
 var session = require('express-session')
 const router = require('./router')
 const dotenv = require('dotenv').config
+const flash = require('connect-flash')
+
 
 const app = express();
 
@@ -16,6 +18,18 @@ let sessionOptions = session({
 })
 
 app.use(sessionOptions)
+
+app.use(flash())
+app.use(function (req, res, next) {
+
+  // res.locals.user = req.session.user
+  //make all errors and success flash messages available
+  res.locals.errors = req.flash("errors")
+  // res.locals.failed = req.flash("failed")
+  res.locals.success = req.flash("success")
+
+  next()
+})
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())

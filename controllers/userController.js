@@ -4,7 +4,22 @@ const User = require('../models/User')
 const dotenv = require('dotenv').config()
 
 exports.home = function(req, res) {
-    res.render('form')
+    if (req.session.user) {
+        res.render('ar')
+    } else {
+        res.render('form')
+    }
+}
+
+exports.mustBeLoggedIn = function (req, res, next) {
+    if(req.session.user) {
+        next()
+    } else {
+        req.flash("errors", "You must be registered to visit that page.")
+        req.session.save(function() {
+            res.redirect('/')
+        })
+    }
 }
 
 exports.showOTPScreen = function (req, res) {
@@ -31,11 +46,21 @@ exports.showOTPScreen = function (req, res) {
 
 exports.register = async function(req, res) {
     let user = new User(req.body)
-    await user.register().then((response) => {
-        console.log(response)
-    }).catch((error) => {
-        console.log(error)
+    await user.register().then(() => {
+        req.session.user = { _id: user.data._id, phone: user.data.phone }
+        req.session.save(function() {
+            res.redirect('/')
+        })
+    }).catch((e) => {
+        req.flash('errors', e)
+        req.session.save(function() {
+            res.redirect('/')
+        })
     })
+}
+
+exports.openAR = function (req, res) {
+    res.render('ar')
 }
 
 exports.verifyPhone = function (req, res) {
@@ -55,4 +80,10 @@ exports.verifyPhone = function (req, res) {
         .catch((error) => {
             console.log(error);
         })
+}
+
+exports.logout = function (req, res) {
+    req.session.destroy(function () {
+        res.redirect('/')
+    })
 }
