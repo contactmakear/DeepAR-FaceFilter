@@ -299,30 +299,35 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-      display: none;
-      z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  display: none;
+  z-index: 200;
 }
 .photoframe{
-  position: absolute;
+  transform: rotate(4.4deg);
+  padding: 8px;
+  position: relative;
   background-color: #eaeaea;
   width: 80%;
   height: 65%;
-
   border-radius: 15px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+  filter: drop-shadow(8px 12px 18px black);
 }
 #share-image-container{
   display: flex;
-  height: 70%;
-  /* width: 90%; */
-
+  height: 88%;
+  width: 100%;
+  border-radius: 12px;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .Download{    position: absolute;
   bottom: 0;
@@ -376,20 +381,20 @@ button{
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 35%;
+    width: 90px;
 
   }
   .photoframe .glasses{
     position: absolute;
     right: 0px;
     bottom: 45px;
-    width: 35%;
+    width: 100px;
   }
   .photoframe .qube{
     position: absolute;
     left:  0px;
     bottom: 45px;
-    width: 35%;
+    width: 100px;
   }
   .photoframe .text_center{
     position: absolute;

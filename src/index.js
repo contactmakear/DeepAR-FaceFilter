@@ -110,7 +110,7 @@ console.log("Deepar version: " + deepar.version);
       await uploadScreenshot(file, userId)
 
       // Display the Screenshot
-      displayScreenshot(newScreenshotCanvas, "share-image-container");
+      // displayScreenshot(newScreenshotCanvas, "share-image-container");
 
       // Optionally Pause DeepAR
       deepAR.setPaused(true);
@@ -144,8 +144,10 @@ console.log("Deepar version: " + deepar.version);
           "Content-Type": "multipart/form-data",
         },
       });
-  
-      // console.log("Uploaded Image Path:", response.data.imagePath);
+
+      const shareImageContainer = document.querySelector('#share-image-container')
+      shareImageContainer.style.backgroundImage = `url(${response.data.imagePath})`
+      console.log("Uploaded Image Path:", response.data.imagePath);
     } catch (error) {
       console.error("Error uploading screenshot:", error);
     }  

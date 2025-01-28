@@ -41,6 +41,7 @@ export const takeScreenshot = async (deepAR, watermarkCanvas) => {
   
   export const displayScreenshot = (screenshotCanvas, containerId) => {
     const imageContainer = document.getElementById(containerId);
+    const shareImageContainer = document.querySelector('#share-image-container')
   
     if (!imageContainer) {
       console.error("Image container not found.");
@@ -54,7 +55,9 @@ export const takeScreenshot = async (deepAR, watermarkCanvas) => {
   
     // Create an image element to display the screenshot
     const img = new Image();
-    img.src = screenshotCanvas.toDataURL("image/jpeg");
+    shareImageContainer.style.backgroundImage = `url(${screenshotCanvas.toDataURL("image/jpeg")});`
+    shareImageContainer.style.display = 'none'
+    // img.src = screenshotCanvas.toDataURL("image/jpeg");
     // img.style.width = "90%";
     imageContainer.appendChild(img);
   }
