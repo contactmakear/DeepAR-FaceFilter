@@ -71,36 +71,38 @@ body {
 }
 
 .carousel-center {
-  width: 84px;
-  height: 84px;
-  border: 8px solid #fff;
-  border-radius: 50%;
+  width: 85px;
+  height: 85px;
+  border: 4px solid #f0ec18;
+  border-radius: 13%;
   z-index: 100;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   -webkit-user-select: none;
 }
 
 .carousel-slider .slide {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  margin-left: 10px;
-  margin-right: 10px;
+  border-radius: 10%;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .carousel-slider .slide.active {
   margin-left: 24px;
   margin-right: 24px;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 
 .slide {
   overflow: hidden;
-  border: 2px solid white;
+  box-shadow: 0 0 0 10px rgba(217, 217, 217, 0.34);
+  border-radius: 10px;
+  
   -webkit-touch-callout: none; /* Safari Touch */
   -webkit-user-select: none; /* Webkit */
   -moz-user-select: none; /* Firefox */
@@ -108,12 +110,15 @@ body {
   user-select: none; /* Future-proof*/
 }
 .slide.active {
-  background-color: #010c43;
+  background-color: #010c4300;
 }
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.responsive-img{
+  border-radius: 10%;
 }
 
 /* Loading spinner */
@@ -223,4 +228,39 @@ body {
   &:hover {
     background-color: #eaeaea;
   }
+}
+
+
+
+.carousel{background: linear-gradient(89.64deg, rgba(223, 194, 58, 0.62) 0%, rgba(91, 153, 90, 0.62) 47%, rgba(188, 32, 38, 0.62) 100%);}
+.button-slider {
+  position: absolute;
+    display: flex;
+       flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    bottom: 20%;
+    
+    
+    transition: left 0.3s ease;
+    will-change: transform;
+}
+.button-slider .slides {
+  border: 10px solid rgba(217, 217, 217, 0.34);
+  width: 60px;
+  height: 60px;
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.button-slider .slides.active{
+  border: 10px solid rgb(255, 252, 252);
+}
+.toolbar-photo {
+  display: none;
 }

@@ -26,17 +26,6 @@ margin: 0px;
 font-size: 18px;
 }
 
-.alert {
-  display: flex;
-  justify-content: center;
-  background: #dc3545;
-  color: #fff;
-  font-family: Gotham-Light;
-  padding: 12px;
-  margin: 0;
-  border-radius: 25px;
-}
-
 h2{font-family: Gotham;}
 p{font-family:  Gotham-Light;
 padding: 10px;font-size: 14px;font-weight: 300;}

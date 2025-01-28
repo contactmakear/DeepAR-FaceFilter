@@ -12,6 +12,7 @@
   </head>
 
   <body>
+
     <!-- loading screen -->
     <div class="fixed-fullscreen" id="loading-screen">
       <div
@@ -67,6 +68,10 @@
         </div>
       </div>
     </div>
+  
+
+  
+
 
     <!-- AR screen -->
     <div class="fixed-fullscreen screen" id="ar-screen" style="display: none">
@@ -75,7 +80,30 @@
         <button>LOGOUT</button>
       </form>
       <!-- <canvas class="deepar" id="deepar-canvas"></canvas> -->
-
+      <div class="button-slider">
+        <div class="slides active" data-category="slide1">
+          <img class="responsive-img" width="80%" height="80%" src="thumbs/icon/Ellipse_1.png" />
+        </div>
+        <div class="slides" data-category="slide2">
+          <img class="responsive-img" width="80%" height="80%" src="thumbs/icon/Ellipse_2.png" />
+        </div>
+      </div>
+      <div
+      id="toolbar"
+      style="
+        z-index: 200;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      "
+    >
+     
+      <!-- toolbar -->
       <div class="carousel" id="carousel">
         <div class="carousel-center" id="carousel-center">
           <div class="lds-ring" id="loading-spinner" style="display: none">
@@ -87,52 +115,102 @@
         </div>
         <div class="carousel-slider">
           <div class="slide">
-            <img class="responsive-img" src="thumbs/ray-ban-wayfarer.png" />
+            <img class="responsive-img" src="thumbs/icon/glass1.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/viking.png" />
+            <img class="responsive-img" src="thumbs/icon/glasses02.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/makeup.png" />
+            <img class="responsive-img" src="thumbs/icon/glasses03.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/makeup-split.png" />
+            <img class="responsive-img" src="thumbs/icon/glasses04.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/flower_face.png" />
+            <img class="responsive-img" src="thumbs/icon/glasses5.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/stallone.png" />
+            <img class="responsive-img" src="thumbs/icon/cap9.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/galaxy.png" />
+            <img class="responsive-img" src="thumbs/icon/cap10.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/humanoid.png" />
+            <img class="responsive-img" src="thumbs/icon/cap11.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/devil_horns.png" />
+            <img class="responsive-img" src="thumbs/icon/cap12.png" />
           </div>
           <div class="slide">
-            <img class="responsive-img" src="thumbs/ping_pong.png" />
+            <img class="responsive-img" src="thumbs/icon/cap13.png" />
           </div>
-          <div class="slide">
-            <img class="responsive-img" src="thumbs/pixel_hearts.png" />
-          </div>
-          <div class="slide">
-            <img class="responsive-img" src="thumbs/snail.png" />
-          </div>
-          <div class="slide">
-            <img class="responsive-img" src="thumbs/hope.png" />
-          </div>
-          <div class="slide">
-            <img class="responsive-img" src="thumbs/vendetta.png" />
-          </div>
-          <div class="slide">
-            <img class="responsive-img" src="thumbs/fire.png" />
-          </div>
+        
+         
         </div>
       </div>
+      <div
+      id="share-screen"
+      class="fixed-fullscreen"
+      style="
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      display: none;"
+    >
+      <!-- close icon -->
+      <div
+        id="close-share-screen"
+        class="no-select"
+        style="
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          color: white;
+          cursor: pointer;
+          z-index: 300;
+          background-color: black;
+          border-radius: 100%;
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <img
+          src="images/interface-delete.svg"
+          style="width: 1.5rem; height: 1.5rem"
+        />
+      </div>
+      <div
+        id="share-image-container"
+        style="
+          display: flex;
+          justify-content: center;
+          flex-grow: 1;
+          max-height: 86%;
+          width: 100%;
+        "
+      ></div>
+      <div
+        style="
+          background-color: black;
+          padding: 0.6rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 60px;
+          width: 100%;
+        "
+      >
+     
+      </div>
+    </div>
+  
+     </div>
     </div>
 
     <script type="text/javascript" src="main.js"></script>

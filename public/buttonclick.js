@@ -1,50 +1,61 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const slides1 = document.querySelectorAll('.slide1');
-    const slides2 = document.querySelectorAll('.slide2');
-    const buttonSlider = document.querySelector('.button-slider');
-    
-    // Function to show the slides based on category
-    function showSlides(category) {
-      if (category === 'slide1') {
-        slides1.forEach((slide, index) => {
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".slides");
+  const toolbarPhotos = document.querySelectorAll(".slide");
+  const carouselInner = document.querySelector(".carousel-slider"); // Assuming only one carousel inner element
+
+  // Click event listeners for each slide
+  slides.forEach((slide) => {
+    slide.addEventListener("click", () => {
+      const category = slide.getAttribute("data-category");
+
+      // Determine which slides to show based on category
+      if (category === "slide1") {
+        toolbarPhotos.forEach((photo, index) => {
           if (index < 5) {
-            slide.style.display = 'block';
+            photo.style.display = "block";
           } else {
-            slide.style.display = 'none';
+            photo.style.display = "none";
           }
         });
-        slides2.forEach(slide => slide.style.display = 'none');
-      } else if (category === 'slide2') {
-        slides2.forEach((slide, index) => {
-          if (index < 5) {
-            slide.style.display = 'block';
+      } else if (category === "slide2") {
+        toolbarPhotos.forEach((photo, index) => {
+          if (index >= 5) {
+            photo.style.display = "block";
           } else {
-            slide.style.display = 'none';
+            photo.style.display = "none";
           }
         });
-        slides1.forEach(slide => slide.style.display = 'none');
       }
-    }
-  
-    // Initially show 5 slides from slide1
-    showSlides('slide1');
-    
-    // Handle click on button-slider to toggle active class
-    buttonSlider.addEventListener('click', function(event) {
-      const clickedSlide = event.target.closest('.slides');
-      
-      // Only proceed if an image is clicked
-      if (clickedSlide && clickedSlide.dataset.category) {
-        // Remove the active class from all slides
-        const allSlides = document.querySelectorAll('.slide');
-        allSlides.forEach(slide => slide.classList.remove('active'));
-  
-        // Add active class to clicked slide
-        clickedSlide.classList.add('active');
-        
-        // Show corresponding slides based on clicked category
-        const category = clickedSlide.dataset.category;
-        showSlides(category);
+
+      // Add 'active' class to the relevant photos
+      toolbarPhotos.forEach((photo) => {
+        photo.classList.remove("active");
+      });
+
+      if (category === "slide1") {
+        toolbarPhotos.forEach((photo, index) => {
+          if (index < 5) {
+            photo.classList.add("active");
+          }
+        });
+      } else if (category === "slide2") {
+        toolbarPhotos.forEach((photo, index) => {
+          if (index >= 5) {
+            photo.classList.add("active");
+          }
+        });
       }
+
+      // Reset carousel position to the starting point
+      carouselInner.style.transform = `translate(128.6px)`;
+      carouselInner.style.transition = 'transform 0.3s'; // Apply smooth transition
+
+      // Add active class to highlight the current slide
+      slides.forEach((s) => s.classList.remove("active"));
+      slide.classList.add("active");
     });
   });
+
+  // Initialize by showing the first category (optional)
+  slides[0].click();
+});

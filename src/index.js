@@ -1,60 +1,111 @@
 import * as deepar from "deepar";
 import Carousel from "./carousel.js";
-import Form from './form'
+import Form from "./form";
+import { takeScreenshot, displayScreenshot, loadImage } from "./camera.js"; // Assuming camera.js is created
 
 if (document.querySelector('.register-form')) {
   new Form()
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".slides");
+  const toolbarPhotos = document.querySelectorAll(".slide");
+  const carouselInner = document.querySelector(".carousel-slider"); // Assuming only one carousel inner element
 
+  // Click event listeners for each slide
+  slides.forEach((slide) => {
+    slide.addEventListener("click", () => {
+      const category = slide.getAttribute("data-category");
+
+      // Determine which slides to show based on category
+      if (category === "slide1") {
+        toolbarPhotos.forEach((photo, index) => {
+          if (index < 5) {
+            photo.style.display = "block";
+          } else {
+            photo.style.display = "none";
+          }
+        });
+      } else if (category === "slide2") {
+        toolbarPhotos.forEach((photo, index) => {
+          if (index >= 5) {
+            photo.style.display = "block";
+          } else {
+            photo.style.display = "none";
+          }
+        });
+      }
+
+      // Add 'active' class to the relevant photos
+      toolbarPhotos.forEach((photo) => {
+        photo.classList.remove("active");
+      });
+
+      if (category === "slide1") {
+        toolbarPhotos.forEach((photo, index) => {
+          if (index < 5) {
+            photo.classList.add("active");
+          }
+        });
+      } else if (category === "slide2") {
+        toolbarPhotos.forEach((photo, index) => {
+          if (index >= 5) {
+            photo.classList.add("active");
+          }
+        });
+      }
+
+      // Reset carousel position to the starting point
+      carouselInner.style.transform = `translate(128.6px)`;
+      carouselInner.style.transition = 'transform 0.3s'; // Apply smooth transition
+
+      // Add active class to highlight the current slide
+      slides.forEach((s) => s.classList.remove("active"));
+      slide.classList.add("active");
+    });
+  });
+
+  // Initialize by showing the first category (optional)
+  slides[0].click();
+});
 // Log the version. Just in case.
 console.log("Deepar version: " + deepar.version);
 
 // Top-level await is not supported.
-// So we wrap the whole code in an async function that is called immediatly.
+// So we wrap the whole code in an async function that is called immediately.
 (async function () {
-  // Get the element you want to place DeepAR into. DeepAR will inherit its width and height from this and fill it.
   const previewElement = document.getElementById("ar-screen");
 
-  // trigger loading progress bar animation
+  // Trigger loading progress bar animation
   const loadingProgressBar = document.getElementById("loading-progress-bar");
   loadingProgressBar.style.width = "100%";
 
   // All the effects are in the public/effects folder.
   // Here we define the order of effect files.
   const effectList = [
-    "effects/ray-ban-wayfarer.deepar",
-    "effects/viking_helmet.deepar",
-    "effects/MakeupLook.deepar",
-    "effects/Split_View_Look.deepar",
-    "effects/flower_face.deepar",
-    "effects/Stallone.deepar",
-    "effects/galaxy_background_web.deepar",
-    "effects/Humanoid.deepar",
-    "effects/Neon_Devil_Horns.deepar",
-    "effects/Ping_Pong.deepar",
-    "effects/Pixel_Hearts.deepar",
-    "effects/Snail.deepar",
-    "effects/Hope.deepar",
-    "effects/Vendetta_Mask.deepar",
-    "effects/Shoes.deepar",
-    
+    "effects/glasses/g1.deepar",
+    "effects/glasses/g2.deepar",
+    "effects/glasses/g3.deepar",
+    "effects/glasses/g4.deepar",
+    "effects/glasses/g8.deepar",
+    "effects/cap/cap2.deepar",
+    "effects/cap/cap3.deepar",
+    "effects/cap/cap4.deepar",
+    "effects/cap/cap2.deepar",
+    "effects//cap/cap1.deepar",
+   
   ];
 
   let deepAR = null;
 
-  // Initialize DeepAR with an effect file.
   try {
     deepAR = await deepar.initialize({
       licenseKey: "67cab1e1e292d950d9a7ffa709562992fc647e116a60ea407e2431798546b10c0880d0ce5cbe0897",
       previewElement,
       effect: effectList[0],
-      // Removing the rootPath option will make DeepAR load the resources from the JSdelivr CDN,
-      // which is fine for development but is not recommended for production since it's not optimized for performance and can be unstable.
-      // More info here: https://docs.deepar.ai/deepar-sdk/platforms/web/tutorials/download-optimizations/#custom-deployment-of-deepar-web-resources
       rootPath: "./deepar-resources",
       additionalOptions: {
         cameraConfig: {
-          // facingMode: 'environment'  // uncomment this line to use the rear camera
+          // facingMode: 'environment'  // Uncomment this line to use the rear camera
         },
       },
     });
@@ -82,4 +133,44 @@ console.log("Deepar version: " + deepar.version);
     }
     loadingSpinner.style.display = "none";
   };
+
+  // Add Screenshot Functionality
+  const screenshotButton = document.getElementById("carousel-center");
+
+  screenshotButton.addEventListener("click", async () => {
+    try {
+      const watermarkedCanvas = document.getElementById("watermark-canvas") || null; // Optional watermark
+
+      // Capture Screenshot
+      const newScreenshotCanvas = await takeScreenshot(deepAR, watermarkedCanvas);
+
+      // Display the Screenshot
+      displayScreenshot(newScreenshotCanvas, "share-image-container");
+
+      // Optionally Pause DeepAR
+      deepAR.setPaused(true);
+
+      // Update UI
+      document.getElementById("share-screen").style.display = "flex";
+    } catch (error) {
+      console.error("Error taking screenshot:", error);
+    }
+
+
+  });
+
+  const closeShareScreenButton = document.getElementById("close-share-screen");
+
+  closeShareScreenButton.addEventListener("click", () => {
+    // Hide the share screen
+    document.getElementById("share-screen").style.display = "none";
+  
+    // Optionally resume DeepAR
+    if (typeof deepAR !== "undefined" && deepAR) {
+      deepAR.setPaused(false);
+    }
+  });
+  
+
+
 })();
