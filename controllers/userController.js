@@ -4,7 +4,7 @@ const { User, updateUserProfileImage } = require('../models/User')
 const { processImage } = require("../src/imageHandler");
 const dotenv = require('dotenv').config()
 
-exports.home = function(req, res) {
+exports.home = function (req, res) {
     if (req.session.user) {
         res.render('ar')
     } else {
@@ -21,11 +21,11 @@ exports.getUserSession = (req, res) => {
 }
 
 exports.mustBeLoggedIn = function (req, res, next) {
-    if(req.session.user) {
+    if (req.session.user) {
         next()
     } else {
         req.flash("errors", "You must be registered to visit that page.")
-        req.session.save(function() {
+        req.session.save(function () {
             res.redirect('/')
         })
     }
@@ -53,16 +53,16 @@ exports.showOTPScreen = function (req, res) {
         });
 }
 
-exports.register = async function(req, res) {
+exports.register = async function (req, res) {
     let user = new User(req.body)
     await user.register().then(() => {
         req.session.user = { _id: user.data._id, phone: user.data.phone }
-        req.session.save(function() {
+        req.session.save(function () {
             res.redirect('/')
         })
     }).catch((e) => {
         req.flash('errors', e)
-        req.session.save(function() {
+        req.session.save(function () {
             res.redirect('/')
         })
     })
@@ -83,7 +83,7 @@ exports.verifyPhone = function (req, res) {
     axios(config)
         .then(async (response) => {
             console.log(JSON.stringify(response.data));
-            
+
             res.json(response.data.Status)
         })
         .catch((error) => {

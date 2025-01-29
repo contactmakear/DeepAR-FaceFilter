@@ -1,199 +1,196 @@
 <%- include('./includes/header') %>
-    <div class="loading-screen" id="loading" style="display:flex;">
-        <img src="/images/text and hand.png" alt="Hero Image" class="img-loading">
-        <div class="loader-container">
-            <div class="loader"></div>
-
-        </div>
+  <div class="loading-screen" id="loading" style="display:flex;">
+    <img src="/images/text and hand.png" alt="Hero Image" class="img-loading">
+    <div class="loader-container">
+      <div class="loader"></div>
 
     </div>
 
-    <div id="containerScene">
-        <div class="landing-screen">
-            <!-- <div class="landing-container"></div> -->
-            <div class="img-container">
-                <img src="/images/2.png" alt="LET GET SOCIAL" class="img-text" />
-                <img src="/images/Group_25.png" alt="Bubble icon  Image" class="img-top" />
-                <img src="/images/99.png" alt="Peoples Image" class="img-center" />
-                <img src="/images/Asset 2 1.png" alt="Ground Image" class="img-bottom" />
-            </div>
-        </div>
-        <div class="details-screen">
-            <!-- <div class="landing-container"></div> -->
-            <div class="content">
-                <div class="form-container">
-                  <% errors.forEach(function(message) { %>
-                    <div class="alert alert-danger text-center"><%- message %></div>
-                  <% }) %>
+  </div>
 
-                    <h2>ENTER DETAILS</h2>
-                    <!-- id="detailsForm" -->
-                    <form class="register-form" method="POST" action="/register">
-                      <input class="phone" type="tel" maxlength="10" name="phone" placeholder="Enter 10-digit phone number">
-                      <button id="verifyOtpBtn" >submit</button>
-                    </form>
-                    <!-- TURN IT ON WHEN NEEDED (ACTUAL FORM) -->
-                    <!-- <form id="detailsForm" method="POST" action="/verify">
-                        <input type="text" placeholder="Enter Age*" name="age" required>
-                        <input type="tel" maxlength="10" name="phone" placeholder="Enter 10-digit phone number"
-                            oninput="validatePhoneNumber(this)" required>
-                        <div class="checkbox-group">
-                            <input type="checkbox" required>
-                            <span  class="checkmark"></span>
-                            <label>
-
-                                I am older than 18 years of age and agree to the <a href="#">Terms & Conditions</a>
-                            </label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" >
-                            <span  class="checkmark"></span>
-                            <label>
-                                I am a smoker
-                            </label>
-                        </div>
-                        <button type="submit">GET OTP</button>
-                    </form> -->
-                </div>
-            </div>
-
-        </div>
-        <div class="otp-screen">
-            <!-- <div class="landing-container"></div> -->
-
-            <div class="content otp-content">
-                <div class="form-container">
-                    <h2>OTP VERIFICATION</h2>
-                    <p>Enter the OTP sent to +91 7060181991</p>
-                    <form id="detailsForm">
-                        <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                            <input class="otp-input m-2 text-center form-control rounded" type="text" id="first"
-                                maxlength="1" />
-                            <input class="otp-input m-2 text-center form-control rounded" type="text" id="second"
-                                maxlength="1" />
-                            <input class="otp-input m-2 text-center form-control rounded" type="text" id="third"
-                                maxlength="1" />
-                            <input class="otp-input m-2 text-center form-control rounded" type="text" id="fourth"
-                                maxlength="1" />
-                        </div>
-
-                    </form>
-                    <button id="verifyBtn" type="submit">VERIFY & PROCEED</button>
-                    <p>Didn't receive the OTP? RESEND OTP</p>
-                </div>
-            </div>
-        </div>
+  <div id="containerScene">
+    <div class="landing-screen">
+      <!-- <div class="landing-container"></div> -->
+      <div class="img-container">
+        <img src="/images/2.png" alt="LET GET SOCIAL" class="img-text" />
+        <img src="/images/Group_25.png" alt="Bubble icon  Image" class="img-top" />
+        <img src="/images/99.png" alt="Peoples Image" class="img-center" />
+        <img src="/images/Asset 2 1.png" alt="Ground Image" class="img-bottom" />
+      </div>
     </div>
-</body>
-<script>
+    <div class="details-screen">
+      <!-- <div class="landing-container"></div> -->
+      <div class="content">
+        <div class="form-container">
+          <% errors.forEach(function(message) { %>
+            <div class="alert alert-danger text-center"><%- message %></div>
+            <% }) %>
 
-const loading = document.getElementById("loading");
-const containerScene = document.getElementById("containerScene");
+              <h2>ENTER DETAILS</h2>
+              <!-- id="detailsForm" -->
+              <!-- <form class="register-form" method="POST" action="/register">
+                <input class="phone" type="tel" maxlength="10" name="phone" placeholder="Enter 10-digit phone number">
+                <button id="verifyOtpBtn">submit</button>
+              </form> -->
+              <!-- TURN IT ON WHEN NEEDED (ACTUAL FORM) -->
 
-document.addEventListener("DOMContentLoaded", function () {
-  loading.style.display = "none";
-  containerScene.style.display = "flex";
-  console.log("come");
-});
 
-console.log("wow");
-</script>
-<script>
-    function validatePhoneNumber(input) {
-  let value = input.value;
-  // Remove any non-numeric characters (optional, if you want only numbers)
-  value = value.replace(/\D/g, "");
+              <form class="register-form" id="detailsForm" method="POST" action="/register">
+                <input type="text" placeholder="Enter Age*" name="age" required>
+                <input class="phone" type="tel" maxlength="10" name="phone" placeholder="Enter Mobile Number*"
+                  oninput="validatePhoneNumber(this)" required>
+                <div class="checkbox-group">
+                  <input id="age-checkbox" type="checkbox" required>
+                  <!-- <span class="checkmark"></span> -->
+                  <label for="age-checkbox">I am older than 18 years of age and agree to the <a href="#">Terms &
+                      Conditions</a></label>
+                </div>
+                <div class="checkbox-group" required>
+                  <input id="smoker-checkbox" type="checkbox">
+                  <!-- <span class="checkmark"></span> -->
+                  <label for="smoker-checkbox">
+                    I am a smoker
+                  </label>
+                </div>
+                <button id="verifyOtpBtn" type="submit">GET OTP</button>
+              </form>
+        </div>
+      </div>
 
-  // Set the value back to the input field, limiting to 10 digits
-  if (value.length > 10) {
-    value = value.substring(0, 10);
-  }
+    </div>
+    <div class="otp-screen">
+      <!-- <div class="landing-container"></div> -->
 
-  input.value = value; // Set the updated value back to input
-}
+      <div class="content otp-content">
+        <div class="form-container">
+          <h2>OTP VERIFICATION</h2>
+          <p>Enter the OTP sent to <span id="userPhone">+91 7060181991</span></p>
+          <form id="otpForm">
+            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+              <input class="otp-input m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
+            </div>
 
-const form = document.querySelector("#otp");
-const inputs = document.querySelectorAll(".otp-input");
-const verifyBtn = document.querySelector("#verifyBtn");
+          </form>
+          <button id="verifyBtn" type="submit">VERIFY & PROCEED</button>
+          <p id="resend-otp">Didn't receive the OTP? <span>RESEND OTP</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+  <script>
 
-const toggleFilledClass = (field) => {
-  if (field.value) {
-    field.classList.add("filled");
-  } else {
-    field.classList.remove("filled");
-  }
-};
+    const loading = document.getElementById("loading");
+    const containerScene = document.getElementById("containerScene");
 
-const isAllInputFilled = () => {
-  return Array.from(inputs).every((input) => input.value);
-};
-
-const toggleVerifyButton = () => {
-  if (isAllInputFilled()) {
-    verifyBtn.removeAttribute("disabled");
-  } else {
-    verifyBtn.setAttribute("disabled", "true");
-  }
-};
-
-form.addEventListener("input", (e) => {
-  const target = e.target;
-  const value = target.value;
-  console.log({ target, value });
-  toggleFilledClass(target);
-  if (target.nextElementSibling) {
-    target.nextElementSibling.focus();
-  }
-  toggleVerifyButton();
-});
-
-inputs.forEach((input, currentIndex) => {
-  // fill check
-  toggleFilledClass(input);
-
-  // paste event
-  input.addEventListener("paste", (e) => {
-    e.preventDefault();
-    const text = e.clipboardData.getData("text");
-    console.log(text);
-    inputs.forEach((item, index) => {
-      if (index >= currentIndex && text[index - currentIndex]) {
-        item.focus();
-        item.value = text[index - currentIndex] || "";
-        toggleFilledClass(item);
-        toggleVerifyButton(); // Check after pasting
-      }
+    document.addEventListener("DOMContentLoaded", function () {
+      loading.style.display = "none";
+      containerScene.style.display = "flex";
+      console.log("come");
     });
-  });
 
-  // backspace event
-  input.addEventListener("keydown", (e) => {
-    if (e.keyCode === 8) {
-      e.preventDefault();
-      input.value = "";
-      toggleFilledClass(input);
-      if (input.previousElementSibling) {
-        input.previousElementSibling.focus();
+    console.log("wow");
+  </script>
+  <script>
+    function validatePhoneNumber(input) {
+      let value = input.value;
+      // Remove any non-numeric characters (optional, if you want only numbers)
+      value = value.replace(/\D/g, "");
+
+      // Set the value back to the input field, limiting to 10 digits
+      if (value.length > 10) {
+        value = value.substring(0, 10);
       }
-    } else {
-      if (input.value && input.nextElementSibling) {
-        input.nextElementSibling.focus();
-      }
+
+      input.value = value; // Set the updated value back to input
     }
-    toggleVerifyButton();
-  });
-});
 
-window.addEventListener("load", () => {
-  inputs[0].focus();
-});
+    const form = document.querySelector("#otp");
+    const inputs = document.querySelectorAll(".otp-input");
+    const verifyBtn = document.querySelector("#verifyBtn");
 
-verifyBtn.addEventListener("click", () => {
-  verifyOTP();
-  toggleVerifyButton();
-});
+    const toggleFilledClass = (field) => {
+      if (field.value) {
+        field.classList.add("filled");
+      } else {
+        field.classList.remove("filled");
+      }
+    };
+
+    const isAllInputFilled = () => {
+      return Array.from(inputs).every((input) => input.value);
+    };
+
+    const toggleVerifyButton = () => {
+      if (isAllInputFilled()) {
+        verifyBtn.removeAttribute("disabled");
+      } else {
+        verifyBtn.setAttribute("disabled", "true");
+      }
+    };
+
+    form.addEventListener("input", (e) => {
+      const target = e.target;
+      const value = target.value;
+      console.log({ target, value });
+      toggleFilledClass(target);
+      if (target.nextElementSibling) {
+        target.nextElementSibling.focus();
+      }
+      toggleVerifyButton();
+    });
+
+    inputs.forEach((input, currentIndex) => {
+      // fill check
+      toggleFilledClass(input);
+
+      // paste event
+      input.addEventListener("paste", (e) => {
+        e.preventDefault();
+        const text = e.clipboardData.getData("text");
+        console.log(text);
+        inputs.forEach((item, index) => {
+          if (index >= currentIndex && text[index - currentIndex]) {
+            item.focus();
+            item.value = text[index - currentIndex] || "";
+            toggleFilledClass(item);
+            toggleVerifyButton(); // Check after pasting
+          }
+        });
+      });
+
+      // backspace event
+      input.addEventListener("keydown", (e) => {
+        if (e.keyCode === 8) {
+          e.preventDefault();
+          input.value = "";
+          toggleFilledClass(input);
+          if (input.previousElementSibling) {
+            input.previousElementSibling.focus();
+          }
+        } else {
+          if (input.value && input.nextElementSibling) {
+            input.nextElementSibling.focus();
+          }
+        }
+        toggleVerifyButton();
+      });
+    });
+
+    window.addEventListener("load", () => {
+      inputs[0].focus();
+    });
+
+    verifyBtn.addEventListener("click", () => {
+      verifyOTP();
+      toggleVerifyButton();
+    });
 
 
-</script>
-<script src="main.js"></script>
-</html>
+  </script>
+  <script src="main.js"></script>
+
+  </html>
