@@ -44,22 +44,21 @@ if (document.querySelector('#ar-screen')) {
     // All the effects are in the public/effects folder.
     // Here we define the order of effect files.
     const effectList = [
-      "effects/newfilterfiles/blueglasses.deepar",
-      "effects/newfilterfiles/bothcap-glasses.deepar",
-      "effects/newfilterfiles/brownglassessing.deepar",
-      "effects/newfilterfiles/brownshadesredcap.deepar",
-      "effects/newfilterfiles/cateyeglasses.deepar",
-      "effects/newfilterfiles/cloundksyglasses.deepar",
-      "effects/newfilterfiles/demincapallblackglasses.deepar",
-      "effects/newfilterfiles/fullblackqubeglassessing.deepar",
-      "effects/newfilterfiles/goldbrownglasses.deepar",
-      "effects/newfilterfiles/greencaponly.deepar",
-      "effects/newfilterfiles/redcapblackqubeshadesglasses.deepar",
-      "effects/newfilterfiles/redonlycap.deepar",
-      "effects/newfilterfiles/whitebigframeglasses.deepar",
+      "effects/newfilterfiles/WhiteShadesBlueDenimCap.deepar",
+      "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
+      "effects/newfilterfiles/RedOnlyCap.deepar",
+      "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",
+      "effects/newfilterfiles/CatEyeGlasses.deepar",
+      "effects/newfilterfiles/BothCap-Glasses.deepar",
       "effects/newfilterfiles/whitecaptennis.deepar",
-      "effects/newfilterfiles/whiteshadesbluedenimcap.deepar",
-
+      "effects/newfilterfiles/BrownGlassesSingle.deepar",
+      "effects/newfilterfiles/DenimCapDarkBlackGlasses.deepar",
+      "effects/newfilterfiles/CloundSkyGlassesSingle.deepar",
+      "effects/newfilterfiles/BrownShadesRedCap.deepar",
+      "effects/newfilterfiles/WhiteBigFrameGlassesSingle.deepar",
+      "effects/newfilterfiles/BlueGlasses.deepar",
+      "effects/newfilterfiles/RedCapBlackQubeShadesGlasses.deepar",
+      "effects/newfilterfiles/GreenCapSingle.deepar",
     ];
 
     let deepAR = null;
@@ -102,7 +101,7 @@ if (document.querySelector('#ar-screen')) {
     };
 
     // Add Screenshot Functionality
-    const screenshotButton = document.getElementById("carousel-center-button");
+    const screenshotButton = document.getElementById("carousel-center");
 
     screenshotButton.addEventListener("click", async () => {
       try {
@@ -179,9 +178,15 @@ if (document.querySelector('#ar-screen')) {
       }
     })
 
-
-
+    
   })();
+
+  const button = document.getElementById('carousel-center-button');
+
+  setTimeout(() => {
+    button.style.opacity="0"
+  }, 10000);  // 300000ms = 5 minutes
+
 
 }
 
