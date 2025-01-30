@@ -44,7 +44,21 @@ if (document.querySelector('#ar-screen')) {
     // All the effects are in the public/effects folder.
     // Here we define the order of effect files.
     const effectList = [
-      "effects/viking_helmet.deepar",      
+      "effects/viking_helmet.deepar",
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
+      "effects/viking_helmet.deepar",   
     ];
 
     // const effectList = [
