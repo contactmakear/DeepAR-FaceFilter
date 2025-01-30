@@ -1,19 +1,22 @@
 @font-face {
-  font-family: Gotham;
-  src: url(../assets/font/Gotham-Black.otf);
-  font-weight: bold;
+  font-family: "Gotham";
+  src: url("../assets/font/Gotham-Black.otf");
+  /* font-weight: bold; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Light;
-  src: url(../assets/font/GothamLight.ttf);
-  font-weight: light;
+  font-family: "Gotham-Light";
+  src: url("../assets/font/Gotham-Light.otf");
+  /* font-weight: light; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Medium;
-  src: url(../assets/font/GothamMedium.ttf);
-  font-weight: medium;
+  font-family: "Gotham-Medium";
+  src: url("../assets/font/Gotham-Bold.otf");
+  /* font-weight: medium; */
+  font-display: swap;
 }
 
 .landing-screen {
@@ -36,33 +39,32 @@
 }
 
 h2 {
-  font-family: Gotham;
+  font-family: "Gotham";
 }
 
 p {
-  font-family: Gotham-Light;
+  font-family: "Gotham-Light";
   padding: 10px;
   font-size: 14px;
   font-weight: 300;
 }
 
 button {
-  font-family: Gotham-Medium;
+  font-family: "Gotham";
 }
 
 input {
-  font-family: Gotham-Light;
+  /* font-family: Gotham-Light; */
   font-weight: 300;
   font-size: 14px;
 }
 
 label {
-  font-family: Gotham-Light;
+  /* font-family: "Gotham-Light"; */
   font-size: 14px;
   font-weight: 300;
   color: #FFFFFFCC;
-
-  text-align: left;
+  /* text-align: left; */
 }
 
 #containerScene {
@@ -251,14 +253,15 @@ h2 {
 }
 
 input[type="tel"],
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
   color: rgba(190, 190, 190, 1);
   background: rgba(37, 46, 42, 1);
   border: 1px solid rgba(248, 214, 64, 1);
   border-radius: 45px;
   padding: 10px 14px;
-  line-height: 1;
-  size: letter;
+  line-height: 1.2;
+  /* size: letter; */
 }
 
 
@@ -267,25 +270,49 @@ input[type="tel"] {
 }
 
 input[type="tel"]::placeholder,
-input[type="number"]::placeholder {
+input[type="number"]::placeholder,
+input[type="text"]::placeholder {
+  padding: 14px 0;
   color: #BEBEBE;
+
 }
 
-input[type="tel"]:focus:placeholder,
+
+input[type="tel"]::-webkit-input-placeholder,
+input[type="number"]::-webkit-input-placeholder,
+input[type="text"]::-webkit-input-placeholder {
+  color: #BEBEBE;
+  padding: 14px 0;
+
+}
+
+input[type="tel"]:-moz-placeholder,
+input[type="number"]:-moz-placeholder,
+input[type="text"]:-moz-placeholder {
+  color: #BEBEBE;
+  padding: 14px 0;
+
+}
+
+
+
+/* input[type="tel"]:focus:placeholder,
 input[type="number"]:focus:placeholder {
   color: transparent;
-}
+} */
 
 input[type="checkbox"] {
-  /* width: 20px; */
-  /* height: 20px; */
-  scale: 1.5;
+  box-sizing: border-box;
+  width: max-content;
+  height: 20px;
+  position: relative;
+  top: 5px;
 }
 
 .checkbox input {
-  position: absolute;
+  /* position: absolute;
   opacity: 0;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .checkbox label {
@@ -348,8 +375,8 @@ input:-webkit-autofill {
   animation-duration: 5000s;
 }
 
-
-/* button {
+/* 
+button {
   width: 80%;
   margin: auto;
   margin-top: 10px;
@@ -362,10 +389,10 @@ input:-webkit-autofill {
   border: 3px solid rgba(255, 255, 255, 1);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: rgba(221, 191, 59, 1);
-  ;
+
   font-size: 18px;
   color: rgba(72, 72, 72, 1);
-  ;
+
   text-transform: uppercase;
 
   border-radius: 50px;
@@ -377,6 +404,9 @@ input:-webkit-autofill {
   transition-property: color;
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
+
+  -webkit-appearance: none;
+  appearance: none;
 } */
 
 
@@ -395,6 +425,9 @@ button {
   margin: auto;
   max-width: 100%;
   margin-top: 1.5rem;
+  -webkit-text-size-adjust: 100%;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-container {
@@ -407,16 +440,17 @@ button {
 .checkbox-group a {
   display: inline-block;
   color: #FFFFFFCC;
-  font-family: Gotham;
+  font-family: "Gotham";
   font-size: 14px;
 }
 
 .checkbox-group {
   /* margin: 25px 25px 0px 25px; */
-  display: flex;
+  /* display: flex; */
   align-items: center;
+  justify-content: flex-start;
   gap: 10px;
-  padding: 0 8px;
+  padding: 8px;
 }
 
 #otp {
@@ -449,6 +483,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .otp-screen p {
   padding: 0;
+  font-family: unset;
 }
 
 #otpForm {
@@ -537,7 +572,21 @@ input[type=number]::-webkit-outer-spin-button {
   font-weight: bold;
 }
 
-/* .otp-screen {
+
+label,
+button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+input::placeholder {
+  color: #BEBEBE !important;
+  opacity: 1 !important;
+}
+
+/* 
+.otp-screen {
   display: flex;
   visibility: visible;
   opacity: 1;

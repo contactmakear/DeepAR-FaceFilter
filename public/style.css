@@ -1,23 +1,26 @@
 @font-face {
-  font-family: Gotham;
-  src: url(../assets/font/Gotham-Black.otf);
-  font-weight: bold;
+  font-family: "Gotham";
+  src: url("../assets/font/Gotham-Black.otf");
+  /* font-weight: bold; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Light;
-  src: url(../assets/font/GothamLight.ttf);
-  font-weight: light;
+  font-family: "Gotham-Light";
+  src: url("../assets/font/GothamLight.ttf");
+  /* font-weight: light; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Medium;
-  src: url(../assets/font/GothamMedium.ttf);
-  font-weight: medium;
+  font-family: "Gotham-Medium";
+  src: url("../assets/font/GothamMedium.ttf");
+  /* font-weight: medium; */
+  font-display: swap;
 }
 
 button {
-  font-family: Gotham-Medium;
+  font-family: "Gotham";
 }
 
 canvas.deepar {
@@ -365,6 +368,7 @@ body {
   /* width: 100%; */
 }
 
+button
 /* button{
   width: 80%;
   margin: auto;
@@ -396,7 +400,7 @@ body {
   bottom: 20px;
 } */
 
-button {
+/* button {
   cursor: pointer;
   padding: 10px 2.5rem;
   border: 0.82px solid #FFFFFF;
@@ -411,7 +415,7 @@ button {
   margin: auto;
   max-width: 100%;
   margin-top: 1.5rem;
-}
+} */
 
 .no-select {
   position: absolute;
