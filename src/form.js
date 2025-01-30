@@ -8,6 +8,9 @@ export default function Form() {
   const detailScreen = document.querySelector('.details-screen')
   const landingScreen = document.querySelector('.landing-screen')
   const otpScreen = document.querySelector('.otp-screen')
+  const verifyBtn = document.querySelector("#verifyBtn");
+  const userPhone = document.querySelector('#userPhone')
+  const firstOTPInput = document.querySelector('#first')
 
   const allErrorTexts = document.querySelectorAll('.alert-danger')
 
@@ -17,7 +20,7 @@ export default function Form() {
     }, 5000)
   })
 
-
+  let userMobileValue
 
   document.addEventListener("DOMContentLoaded", function () {
     hideElement(loading, 300)
@@ -49,40 +52,57 @@ export default function Form() {
     axios.post('/show-otp-screen', {
       phone: `+91${phone.value.trim()}`
     }).then(response => {
-
       if (response.data.status == 'Success') {
-        detailScreen.style.display = 'none'
-        let otp = prompt("Please enter the OTP.")
+        // detailScreen.style.display = 'none'
+        userMobileValue = `+91${phone.value.trim()}`
+        userPhone.textContent = ''
+        userPhone.textContent = userMobileValue
 
-        axios.post('/verify-otp', {
-          details: response.data.details,
-          userOTP: otp,
-          phone: phone
-        }).then((response) => {
-          console.log("response console :", response);
-          if (response.data == 'Success') {
-            alert('OTP Matched')
+        hideElement(detailScreen, 300)
+        showElement(otpScreen, 0, 'flex')
+        firstOTPInput.focus()
 
-            axios.post('/register', formDataObject).then((response) => {
-              if (response.data.status == "Success") {
-                window.location.href = "/ar"
+        // let otp = prompt("Please enter the OTP.")
+        let otp;
+
+        verifyBtn.addEventListener("click", () => {
+          otp = getOTPValue();
+          if (otp.length === 6) {
+            axios.post('/verify-otp', {
+              details: response.data.details,
+              userOTP: otp,
+              phone: phone
+            }).then((response) => {
+              console.log("response console :", response);
+              if (response.data == 'Success') {
+                // alert('OTP Matched')
+
+                axios.post('/register', formDataObject).then((response) => {
+                  if (response.data.status == "Success") {
+                    window.location.href = "/ar"
+                  }
+                }).catch((err) => {
+                  console.log(err);
+                  alert('Something went wrong. Please try again later.')
+                  window.location.href = '/'
+                })
+
+              } else {
+                alert('OTP Mismatch')
+                window.location.href = '/'
               }
             }).catch((err) => {
-              console.log(err);
-              alert('Something went wrong. Please try again later.')
+              alert('Error :', `${err}`)
               window.location.href = '/'
             })
-
           } else {
-            alert('OTP Mismatch')
-            window.location.href = '/'
+            alert("Please enter a valid 6-digit OTP.");
           }
-        }).catch((err) => {
-          alert('Error :', `${err}`)
-          window.location.href = '/'
-        })
+        });
+
       }
     }).catch(error => {
+      alert("Something went wrong !!")
       console.log('Error sending data:', error)
     })
   }
