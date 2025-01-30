@@ -3,9 +3,10 @@ const ObjectId = require('mongodb').ObjectId
 const axios = require('axios')
 const dotenv = require('dotenv').config()
 
-let User = function (data) {
+let User = function (data, userid) {
   this.data = data
   this.errors = []
+  this.userid = userid
 }
 
 User.prototype.validate = function () {
@@ -46,7 +47,8 @@ User.prototype.cleanUp = function () {
     age: this.data.age ? parseInt(this.data.age, 10) : "",
     ageCheckbox: this.data.ageCheckbox.trim().toLowerCase(),
     smokerCheckbox: this.data.smokerCheckbox.trim().toLowerCase(),
-    profileImages: []
+    profileImages: [],
+    registeredDate: new Date()
   }
 }
 
@@ -82,28 +84,26 @@ User.prototype.register = function () {
   })
 }
 
-// User.prototype.getOTP = function() {
+User.userQuery = function () {
+  return new Promise(async (resolve, reject) => {
+    let users = await usersCollection.find({}).toArray()
+    resolve(users)
+  })
+}
 
-//     var sendOTP = {
-//         method: 'get',
-//         maxBodyLength: Infinity,
-//         url: `https://2factor.in/API/V1/${process.env.TWOFACTORKEY}/SMS/+91${req.body.phone}/AUTOGEN2/OTP1`,
-//         headers: {}
-//     }
+User.userById = function(userid) {
+  return new Promise(async (resolve, reject) => {
+    let user = await usersCollection.findOne({ _id: new ObjectId(userid) })
+    resolve(user)
+  })
+}
 
-//     axios(sendOTP)
-//         .then(function (response) {
-//             console.log(JSON.stringify(response.data))
-//             details = {
-//                 status: response.data.Status,
-//                 details: response.data.Details,
-//             }
-//             res.json(details)
-//         })
-//         .catch(function (error) {
-//             console.log(error)
-//         })
-// }
+User.deleteUser = async function(userid) {
+  return new Promise(async (resolve, reject) => {
+    let user = await usersCollection.deleteOne( {_id: new ObjectId(userid)} )
+    resolve(user)
+  })
+}
 
 // Function to Update User Profile with Image
 const updateUserProfileImage = async (userId, imagePath) => {

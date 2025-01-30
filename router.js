@@ -19,8 +19,12 @@ router.get('/t&c', (req, res) => {
     res.render('t&c')
 })
 
+router.get('/admin/users', userController.passwordProtected, userController.getAllUsers)
+router.post('/admin/users/:_id', userController.passwordProtected, userController.getUserById)
+router.post('/admin/users/delete/:_id', userController.passwordProtected, userController.deleteUser)
 
-router.post("/get-user-id", userController.getUserSession);
+
+router.post("/get-user-id", userController.getUserSession)
 router.post('/show-otp-screen', userController.showOTPScreen)
 router.post('/verify-otp', userController.verifyPhone)
 router.post('/register', userController.register)

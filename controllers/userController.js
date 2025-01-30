@@ -4,6 +4,16 @@ const { User, updateUserProfileImage } = require('../models/User')
 const { processImage } = require("../src/imageHandler");
 const dotenv = require('dotenv').config()
 
+exports.passwordProtected = function (req, res, next) {
+    res.set("WWW-Authenticate", "Basic realm ='makearsiteejs")
+    if (req.headers.authorization == "Basic Z2Zzb2NpYWwtYWRtaW46TEVUTUVJTkBnZnNvY2lhbA==") {
+        next(); 
+    } else {
+        // console.log(req.headers.authorization);
+        res.status(401).send("Try again");
+    }
+}
+
 exports.home = function (req, res) {
     if (req.session.user) {
         res.render('ar')
@@ -108,6 +118,32 @@ exports.logout = function (req, res) {
     req.session.destroy(function () {
         res.redirect('/')
     })
+}
+
+exports.getAllUsers = async function(req, res) {
+    await User.userQuery().then(function (users) {
+        res.render('admin/users', { users })
+    }).catch(function (e) {
+        console.log(e)
+    })
+}
+
+exports.getUserById = async (req, res) => {
+    const user = await User.userById(req.params._id)
+
+    if (!user) {
+        return res.status(404).send("User not found")
+    }
+    res.render('admin/userDetails', { user })
+}
+
+exports.deleteUser = async (req, res) => {
+    const user = await User.deleteUser(req.params._id)
+
+    if (!user) {
+        return res.status(404).send("User not found")
+    }
+    res.redirect('/admin/users')
 }
 
 // API to Upload and Update Profile Image
