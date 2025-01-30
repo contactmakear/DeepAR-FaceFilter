@@ -44,23 +44,30 @@ if (document.querySelector('#ar-screen')) {
     // All the effects are in the public/effects folder.
     // Here we define the order of effect files.
 
-    const effectList = [
-      "effects/effects/glasses/g1.deepar",    
-      "effects/effects/glasses/g2.deepar",    
-      "effects/effects/glasses/g3.deepar",    
-      "effects/effects/glasses/g4.deepar",    
-      "effects/effects/glasses/g5.deepar",    
-      "effects/effects/glasses/g6.deepar",    
-      "effects/effects/glasses/g7.deepar",    
-      "effects/effects/glasses/g8.deepar",    
-    ];
+    // const effectList = [
+    //   "effects/newfilterfiles/WhiteShadesBlueDenimCap.deepar",
+    //   "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
+    //   "effects/newfilterfiles/GreenCapSingle.deepar",
+    //   "effects/newfilterfiles/RedOnlyCap.deepar",
+    //   "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",
+    //   "effects/newfilterfiles/CatEyeGlasses.deepar",
+    //   "effects/newfilterfiles/BothCap-Glasses.deepar",
+    //   "effects/newfilterfiles/whitecaptennis.deepar",
+    //   "effects/newfilterfiles/BrownGlassesSingle.deepar",
+    //   "effects/newfilterfiles/DenimCapDarkBlackGlasses.deepar",
+    //   "effects/newfilterfiles/CloundSkyGlassesSingle.deepar",
+    //   "effects/newfilterfiles/BrownShadesRedCap.deepar",
+    //   "effects/newfilterfiles/WhiteBigFrameGlassesSingle.deepar",
+    //   "effects/newfilterfiles/BlueGlasses.deepar",
+    //   "effects/newfilterfiles/RedCapBlackQubeShadesGlasses.deepar",      
+    // ];
 
 
     let deepAR = null;
 
     try {
       deepAR = await deepar.initialize({
-        licenseKey: "2a51777dc1f79fc3c597fb49c754394bf68f897727fb2cdc5d4177ea9976b5e2c682c0175655fff1",
+        licenseKey: "26f99e4a4c4526f420c18a101ef06d89a9aa64214c076cb765adc6ac6ea71985f974515335c431c8",
         previewElement,
         effect: effectList[0],
         rootPath: "./deepar-resources",
