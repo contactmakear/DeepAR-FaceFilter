@@ -86,12 +86,18 @@
           <p>Enter the OTP sent to <span id="userPhone"></span></p>
           <form id="otpForm">
             <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="sixth" maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="first"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="second"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="third"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="fourth"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="fifth"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="sixth"
+                maxlength="1" />
             </div>
 
           </form>
@@ -148,6 +154,7 @@
     const toggleVerifyButton = () => {
       if (isAllInputFilled()) {
         verifyBtn.removeAttribute("disabled");
+        inputs[5].blur();
       } else {
         verifyBtn.setAttribute("disabled", "true");
       }
@@ -209,17 +216,17 @@
       inputs[0].focus();
     });
 
-    verifyBtn.addEventListener("click", () => {
-      const otpValue = getOTPValue();
-      // verifyOTP();
+    // verifyBtn.addEventListener("click", () => {
+    //   const otpValue = getOTPValue();
+    //   // verifyOTP();
 
-      // toggleVerifyButton();
-      if (otpValue.length === 6) {
+    //   // toggleVerifyButton();
+    //   if (otpValue.length === 6) {
 
-      } else {
-        alert("Please enter a valid 6-digit OTP.");
-      }
-    });
+    //   } else {
+    //     alert("Please enter a valid 6-digit OTP.");
+    //   }
+    // });
 
 
   </script>
