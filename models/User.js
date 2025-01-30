@@ -63,11 +63,10 @@ User.prototype.register = function () {
       let phoneNumberExists = await usersCollection.findOne({ phone: this.data.phone })
       if (phoneNumberExists) {
         //  this.errors.push("Phone number already registered.")
-        this.data._id = phoneNumberExists._id  
+        this.data._id = phoneNumberExists._id
         resolve("success")
       } else {
         await usersCollection.insertOne(this.data)
-        this.data._id = result.insertedId
         resolve('success')
       }
     } else {

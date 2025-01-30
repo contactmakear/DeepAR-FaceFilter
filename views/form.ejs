@@ -72,7 +72,12 @@
                   you are a smoker.
                 </p> -->
 
-                <button id="verifyOtpBtn" type="submit">GET OTP</button>
+                <button id="verifyOtpBtn" type="submit">GET OTP
+
+                  <div class="btnLoader">
+
+                  </div>
+                </button>
               </form>
         </div>
       </div>
@@ -236,23 +241,6 @@
 
   </script>
 
-  <script>
-    function showLoader(button) {
-      const loader = document.querySelector('.btnLoader');
-      const verifyBtnOtp = document.querySelector('#verifyOtpBtn')
-      const verifyBtn = document.querySelector('#verifyBtn');
-
-      loader.style.display = 'block';
-      button.classList.add('loading');
-      button.disabled = true;
-
-      // setTimeout(() => {
-      //   loader.style.display = 'none';
-      //   verifyBtn.classList.remove('loading');
-      //   verifyBtn.disabled = false;
-      // }, 3000);
-    }
-  </script>
 
   <script src="main.js"></script>
 

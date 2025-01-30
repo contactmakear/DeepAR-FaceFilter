@@ -51,7 +51,7 @@ exports.showOTPScreen = function (req, res) {
 
     axios(sendOTP)
         .then(function (response) {
-            console.log(JSON.stringify(response.data))
+            // console.log('response.data after sending OTP', JSON.stringify(response.data))
             details = {
                 status: response.data.Status,
                 details: response.data.Details,
@@ -60,7 +60,7 @@ exports.showOTPScreen = function (req, res) {
         })
         .catch(function (error) {
             res.json({ status: error.Details })
-            console.log("error", error);
+            // console.log("error while sending otp", error);
         });
 }
 
@@ -83,7 +83,7 @@ exports.register = async function (req, res) {
             })
         }
     }).catch((e) => {
-        console.log(e);
+        // console.log('error while register', e);
         req.flash('errors', e)
         req.session.save(function () {
             res.json({ status: 'Failed' })
@@ -106,7 +106,7 @@ exports.verifyPhone = function (req, res) {
 
     axios(config)
         .then(async (response) => {
-            console.log(JSON.stringify(response.data));
+            // console.log('response.data while sending verifyPhone', JSON.stringify(response.data));
             res.json(response.data.Status)
         })
         .catch((error) => {

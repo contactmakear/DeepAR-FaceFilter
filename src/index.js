@@ -68,7 +68,7 @@ if (document.querySelector('#ar-screen')) {
     try {
       deepAR = await deepar.initialize({
         licenseKey: "26f99e4a4c4526f420c18a101ef06d89a9aa64214c076cb765adc6ac6ea71985f974515335c431c8",
-        previewElement,
+        previewElement: document.querySelector('#ar-screen'),
         effect: effectList[0],
         rootPath: "./deepar-resources",
         additionalOptions: {
