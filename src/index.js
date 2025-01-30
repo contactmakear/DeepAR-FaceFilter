@@ -109,10 +109,11 @@ if (document.querySelector('#ar-screen')) {
 
         // Capture Screenshot
         const newScreenshotCanvas = await takeScreenshot(deepAR, watermarkedCanvas)
+        console.log(newScreenshotCanvas)
 
         const userId = await getUserIdFromSession()
         if (!userId) {
-          console.error("User not logged in!");
+          console.error("user not logged in!");
           return;
         }
 
