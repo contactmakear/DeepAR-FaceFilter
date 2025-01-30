@@ -21,7 +21,7 @@
 }
 
 .details-screen {
-  display: flex;
+  display: none;
 }
 
 .otp-screen {
@@ -67,6 +67,11 @@ label {
 
 #containerScene {
   display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100dvh;
+  top: 0;
+  left: 0;
 }
 
 .loading-screen {
@@ -111,6 +116,15 @@ label {
   /* display: flex; */
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+  transition: all 300ms ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100vw;
 }
 
 .landing-container {

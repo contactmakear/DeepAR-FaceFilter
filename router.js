@@ -10,7 +10,7 @@ router.get('/', userController.home)
 
 router.post("/get-user-id", userController.getUserSession);
 router.post('/register', userController.register)
-// router.post('/verify-otp', userController.verifyPhone)
+router.post('/verify-otp', userController.verifyPhone)
 router.post("/upload", upload.single("image"), userController.uploadProfileImage);
 router.post('/logout', userController.logout)
 

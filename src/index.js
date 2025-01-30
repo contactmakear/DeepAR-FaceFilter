@@ -3,6 +3,7 @@ import Carousel from "./carousel.js";
 import Form from "./form";
 import { takeScreenshot, displayScreenshot, loadImage, base64ToBlob } from "./camera.js";
 import axios from 'axios'
+import { hideElement } from "./utils.js";
 
 if (document.querySelector('.register-form')) {
   new Form()
@@ -22,6 +23,8 @@ if (document.querySelector('#ar-screen')) {
     // Initialize by showing the first category (optional)
     slides[0].click();
   })
+
+
 
 
 

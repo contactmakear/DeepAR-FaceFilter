@@ -1,10 +1,12 @@
 import axios from 'axios'
+import { hideElement, showElement } from './utils'
 
 export default function Form() {
   let phone = document.querySelector('.phone')
   const age = document.querySelector('.age')
   const detailsForm = document.getElementById('detailsForm')
   const detailScreen = document.querySelector('.details-screen')
+  const landingScreen = document.querySelector('.landing-screen')
   const otpScreen = document.querySelector('.otp-screen')
 
   const allErrorTexts = document.querySelectorAll('.alert-danger')
@@ -15,7 +17,24 @@ export default function Form() {
     }, 5000)
   })
 
-  detailScreen.style.display = 'flex'
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    hideElement(loading, 300)
+    showElement(containerScene, 0, "flex")
+    showElement(landingScreen, 0, 'flex')
+
+    setTimeout(() => {
+      hideElement(landingScreen, 300)
+      showElement(detailScreen, 0, 'flex')
+    }, 2000)
+
+    // loading.style.display = "none";
+    // containerScene.style.display = "flex";
+    console.log("come");
+  });
+
+  // detailScreen.style.display = 'flex'
   // detailsForm.addEventListener('submit', showOTPWindow)
 
   function showOTPWindow(e) {
