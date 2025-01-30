@@ -3,7 +3,7 @@
 package-lock.json
 .DS_Store
 .env
-/public/main.js
+./public/main.js
 /public/effects/cap/cap5.deepar
 /public/uploads
 /public/multer
