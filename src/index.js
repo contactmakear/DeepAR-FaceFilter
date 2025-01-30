@@ -49,6 +49,16 @@ if (document.querySelector('#ar-screen')) {
       "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
       "effects/newfilterfiles/GreenCapSingle.deepar",
       "effects/newfilterfiles/RedOnlyCap.deepar",
+      "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",    
+      "effects/newfilterfiles/WhiteShadesBlueDenimCap.deepar",
+      "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
+      "effects/newfilterfiles/GreenCapSingle.deepar",
+      "effects/newfilterfiles/RedOnlyCap.deepar",
+      "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",    
+      "effects/newfilterfiles/WhiteShadesBlueDenimCap.deepar",
+      "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
+      "effects/newfilterfiles/GreenCapSingle.deepar",
+      "effects/newfilterfiles/RedOnlyCap.deepar",
       "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",      
     ];
 
@@ -57,7 +67,7 @@ if (document.querySelector('#ar-screen')) {
 
     try {
       deepAR = await deepar.initialize({
-        licenseKey: "2a51777dc1f79fc3c597fb49c754394bf68f897727fb2cdc5d4177ea9976b5e2c682c0175655fff1",
+        licenseKey: "4b0df3e8c75116b990debe8dc1886a2d2f630b70dc1bdad3a6a2ac6a52eddc20197321454fb7111e",
         previewElement,
         effect: effectList[0],
         rootPath: "./deepar-resources",
