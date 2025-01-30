@@ -11,6 +11,7 @@ export default function Form() {
   const verifyBtn = document.querySelector("#verifyBtn");
   const userPhone = document.querySelector('#userPhone')
   const firstOTPInput = document.querySelector('#first')
+  const verifyOtpBtn = document.querySelector('#verifyOtpBtn')
 
   const allErrorTexts = document.querySelectorAll('.alert-danger')
 
@@ -37,10 +38,14 @@ export default function Form() {
   });
 
   // detailScreen.style.display = 'flex'
-  detailsForm.addEventListener('submit', showOTPWindow)
-
-  function showOTPWindow(e) {
+  detailsForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    showOTPWindow()
+    showLoader(verifyOtpBtn)
+  })
+
+  function showOTPWindow() {
+
 
     const formData = new FormData(detailsForm)
     const formDataObject = Object.fromEntries(formData.entries());
@@ -58,10 +63,15 @@ export default function Form() {
         showElement(otpScreen, 0, 'flex')
         firstOTPInput.focus()
 
+        hideLoader(verifyOtpBtn)
+
         // let otp = prompt("Please enter the OTP.")
         let otp;
 
         verifyBtn.addEventListener("click", () => {
+
+          showLoader(verifyBtn)
+
           otp = getOTPValue();
           if (otp.length === 6) {
             axios.post('/verify-otp', {
@@ -69,38 +79,72 @@ export default function Form() {
               userOTP: otp,
               phone: phone
             }).then((response) => {
-              console.log("response console :", response);
+              // console.log("response console :", response);
               if (response.data == 'Success') {
                 // alert('OTP Matched')
 
                 axios.post('/register', formDataObject).then((response) => {
                   if (response.data.status == "Success") {
                     window.location.href = "/"
+                    hideLoader(verifyBtn)
+                    hideLoader(verifyOtpBtn)
+
                   }
                 }).catch((err) => {
-                  console.log(err);
+                  // console.log(err);
                   alert('Something went wrong. Please try again later.')
                   window.location.href = '/'
+                  hideLoader(verifyBtn)
+                  hideLoader(verifyOtpBtn)
                 })
 
               } else {
                 alert('OTP Mismatch')
                 window.location.href = '/'
+                hideLoader(verifyBtn)
+                hideLoader(verifyOtpBtn)
               }
             }).catch((err) => {
               alert('Error :', `${err}`)
               window.location.href = '/'
+              hideLoader(verifyBtn)
+              hideLoader(verifyOtpBtn)
             })
           } else {
             alert("Please enter a valid 6-digit OTP.");
+            hideLoader(verifyBtn)
+            hideLoader(verifyOtpBtn)
           }
         });
 
+      } else if (response.data.status == 'Error') {
+        alert("Invalid Phone Number.")
+        hideLoader(verifyOtpBtn)
       }
     }).catch(error => {
       alert("Something went wrong!! ", error)
-      console.log('Error sending data:', error)
+      hideLoader(verifyOtpBtn)
+      // console.log('Error sending data:', error)
     })
+  }
+
+
+
+
+  function showLoader(button) {
+    const loader = button.querySelector('.btnLoader');
+    loader.style.display = 'block';
+    button.classList.add('loading');
+    button.disabled = true;
+
+
+  }
+
+  function hideLoader(button) {
+    const loader = button.querySelector('.btnLoader');
+    loader.style.display = 'none';
+    button.classList.remove('loading');
+    button.disabled = false;
   }
 
 
