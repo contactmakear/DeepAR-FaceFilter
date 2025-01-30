@@ -54,13 +54,18 @@ exports.showOTPScreen = function (req, res) {
 }
 
 exports.register = async function (req, res) {
-    let user = new User(req.body)
+
+    const { phone, age, ageCheckbox, smokerCheckbox } = req.body
+
+    let user = new User({ phone, age, ageCheckbox, smokerCheckbox })
+
     await user.register().then(() => {
         req.session.user = { _id: user.data._id, phone: user.data.phone }
         req.session.save(function () {
             res.redirect('/')
         })
     }).catch((e) => {
+        console.log(e);
         req.flash('errors', e)
         req.session.save(function () {
             res.redirect('/')

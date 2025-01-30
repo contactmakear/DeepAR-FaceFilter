@@ -249,6 +249,11 @@ input[type="number"]::placeholder {
   color: #BEBEBE;
 }
 
+input[type="tel"]:focus:placeholder,
+input[type="number"]:focus:placeholder {
+  color: transparent;
+}
+
 input[type="checkbox"] {
   /* width: 20px; */
   /* height: 20px; */
@@ -490,6 +495,18 @@ input[type=number]::-webkit-outer-spin-button {
 .alert-danger {
   background: #ff0000;
   color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.form-error {
+  position: absolute;
+  color: #E94949;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  pointer-events: none;
 }
 
 

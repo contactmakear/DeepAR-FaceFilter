@@ -36,22 +36,41 @@
 
 
               <form class="register-form" id="detailsForm" method="POST" action="/register">
-                <input type="number" placeholder="Enter Age*" name="age" required>
-                <input class="phone" type="tel" maxlength="10" name="phone" placeholder="Enter Mobile Number*"
-                  oninput="validatePhoneNumber(this)" required>
+
+                <div class="input-container">
+                  <input type="number" placeholder="Enter Age*" name="age" required>
+                  <!-- <p id="ageError" class="form-error">Age must be between 18 and 110. -->
+                  </p>
+                </div>
+
+                <div class="input-container">
+                  <input class="phone" class="phone" type="tel" maxlength="10" name="phone"
+                    placeholder="Enter Mobile Number*" oninput="validatePhoneNumber(this)" required>
+                  <!-- <p id="phoneError" class="form-error">Phone number must be 10
+                    digits.</p> -->
+                </div>
+
                 <div class="checkbox-group">
-                  <input id="age-checkbox" type="checkbox" required>
+                  <input class="age" name="ageCheckbox" id="age-checkbox" type="checkbox" value="accepted" required>
                   <!-- <span class="checkmark"></span> -->
                   <label for="age-checkbox">I am older than 18 years of age and agree to the <a href="#">Terms &
                       Conditions</a></label>
                 </div>
-                <div class="checkbox-group" required>
-                  <input id="smoker-checkbox" type="checkbox">
+                <!-- <p id="ageCheckboxError" class="form-error">You must agree to the
+                  terms and
+                  conditions.</p> -->
+
+                <div class="checkbox-group">
+                  <input required name="smokerCheckbox" id="smoker-checkbox" value="accepted" type="checkbox">
                   <!-- <span class="checkmark"></span> -->
                   <label for="smoker-checkbox">
                     I am a smoker
                   </label>
                 </div>
+                <!-- <p id="smokerCheckboxError" class="form-error">Please confirm if
+                  you are a smoker.
+                </p> -->
+
                 <button id="verifyOtpBtn" type="submit">GET OTP</button>
               </form>
         </div>
