@@ -58,7 +58,7 @@ if (document.querySelector('#ar-screen')) {
       "effects/newfilterfiles/BrownShadesRedCap.deepar",
       "effects/newfilterfiles/WhiteBigFrameGlassesSingle.deepar",
       "effects/newfilterfiles/BlueGlasses.deepar",
-      "effects/newfilterfiles/RedCapBlackQubeShadesGlasses.deepar",      
+      "effects/newfilterfiles/RedCapBlackQubeShadesGlasses.deepar",
     ];
 
     let deepAR = null;
@@ -178,31 +178,33 @@ if (document.querySelector('#ar-screen')) {
       }
     })
 
-    
+
   })();
 
   const button = document.getElementById('carousel-center-button');
 
   setTimeout(() => {
-    button.style.opacity="0"
+    button.style.opacity = "0"
   }, 20000);  // 300000ms = 5 minutes
 
 
 
-// Download Clicked Image with Frame
+  // Download Clicked Image with Frame
   const downloadPhoto = document.getElementById('downloadPhoto');
   const imageFrame = document.getElementById("share-screen");
   var closeShareScreen = document.getElementById("close-share-screen");
 
-  downloadPhoto.addEventListener("click", function() {     
+  downloadPhoto.addEventListener("click", function () {
     closeShareScreen.style.display = 'none';
+    downloadPhoto.style.display = 'none';
+
     html2canvas(imageFrame).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
 
       var link = document.createElement('a');
-      link.href = imgData; 
-      link.download = "Social_Selfie.png"; 
-      link.click();       
+      link.href = imgData;
+      link.download = "Social_Selfie.png";
+      link.click();
       closeShareScreen.style.display = 'flex';
     });
   });
