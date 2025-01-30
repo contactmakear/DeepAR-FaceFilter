@@ -44,28 +44,33 @@ if (document.querySelector('#ar-screen')) {
     // All the effects are in the public/effects folder.
     // Here we define the order of effect files.
     const effectList = [
-      "effects/newfilterfiles/WhiteShadesBlueDenimCap.deepar",
-      "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
-      "effects/newfilterfiles/GreenCapSingle.deepar",
-      "effects/newfilterfiles/RedOnlyCap.deepar",
-      "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",
-      "effects/newfilterfiles/CatEyeGlasses.deepar",
-      "effects/newfilterfiles/BothCap-Glasses.deepar",
-      "effects/newfilterfiles/whitecaptennis.deepar",
-      "effects/newfilterfiles/BrownGlassesSingle.deepar",
-      "effects/newfilterfiles/DenimCapDarkBlackGlasses.deepar",
-      "effects/newfilterfiles/CloundSkyGlassesSingle.deepar",
-      "effects/newfilterfiles/BrownShadesRedCap.deepar",
-      "effects/newfilterfiles/WhiteBigFrameGlassesSingle.deepar",
-      "effects/newfilterfiles/BlueGlasses.deepar",
-      "effects/newfilterfiles/RedCapBlackQubeShadesGlasses.deepar",
+      "effects/viking_helmet.deepar",
     ];
+
+    // const effectList = [
+    //   "effects/newfilterfiles/WhiteShadesBlueDenimCap.deepar",
+    //   "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
+    //   "effects/newfilterfiles/GreenCapSingle.deepar",
+    //   "effects/newfilterfiles/RedOnlyCap.deepar",
+    //   "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",
+    //   "effects/newfilterfiles/CatEyeGlasses.deepar",
+    //   "effects/newfilterfiles/BothCap-Glasses.deepar",
+    //   "effects/newfilterfiles/whitecaptennis.deepar",
+    //   "effects/newfilterfiles/BrownGlassesSingle.deepar",
+    //   "effects/newfilterfiles/DenimCapDarkBlackGlasses.deepar",
+    //   "effects/newfilterfiles/CloundSkyGlassesSingle.deepar",
+    //   "effects/newfilterfiles/BrownShadesRedCap.deepar",
+    //   "effects/newfilterfiles/WhiteBigFrameGlassesSingle.deepar",
+    //   "effects/newfilterfiles/BlueGlasses.deepar",
+    //   "effects/newfilterfiles/RedCapBlackQubeShadesGlasses.deepar",      
+    // ];
+
 
     let deepAR = null;
 
     try {
       deepAR = await deepar.initialize({
-        licenseKey: "26f99e4a4c4526f420c18a101ef06d89a9aa64214c076cb765adc6ac6ea71985f974515335c431c8",
+        licenseKey: "2a51777dc1f79fc3c597fb49c754394bf68f897727fb2cdc5d4177ea9976b5e2c682c0175655fff1",
         previewElement,
         effect: effectList[0],
         rootPath: "./deepar-resources",
@@ -109,10 +114,11 @@ if (document.querySelector('#ar-screen')) {
 
         // Capture Screenshot
         const newScreenshotCanvas = await takeScreenshot(deepAR, watermarkedCanvas)
+        console.log(newScreenshotCanvas)
 
         const userId = await getUserIdFromSession()
         if (!userId) {
-          console.error("User not logged in!");
+          console.error("user not logged in!");
           return;
         }
 
