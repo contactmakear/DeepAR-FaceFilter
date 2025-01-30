@@ -43,11 +43,7 @@ export default function Form() {
     e.preventDefault()
 
     const formData = new FormData(detailsForm)
-
-
-
     const formDataObject = Object.fromEntries(formData.entries());
-
 
     axios.post('/show-otp-screen', {
       phone: `+91${phone.value.trim()}`
@@ -102,7 +98,7 @@ export default function Form() {
 
       }
     }).catch(error => {
-      alert("Something went wrong !!")
+      alert("Something went wrong!! ", error)
       console.log('Error sending data:', error)
     })
   }

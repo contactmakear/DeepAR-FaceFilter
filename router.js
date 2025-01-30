@@ -11,9 +11,9 @@ router.get('/getAR', (req, res) => {
     res.render("ar")
 })
 
-// router.get('/t&c', (req, res) => {
-//     res.render('t&c')
-// })
+router.get('/t&c', (req, res) => {
+    res.render('t&c')
+})
 
 
 router.post("/get-user-id", userController.getUserSession);

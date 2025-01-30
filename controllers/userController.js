@@ -49,7 +49,8 @@ exports.showOTPScreen = function (req, res) {
             res.json(details)
         })
         .catch(function (error) {
-            console.log(error);
+            res.json({ status: error.Details })
+            console.log("error", error);
         });
 }
 
