@@ -49,17 +49,7 @@ if (document.querySelector('#ar-screen')) {
       "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
       "effects/newfilterfiles/GreenCapSingle.deepar",
       "effects/newfilterfiles/RedOnlyCap.deepar",
-      "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",
-      "effects/newfilterfiles/CatEyeGlasses.deepar",
-      "effects/newfilterfiles/BothCap-Glasses.deepar",
-      "effects/newfilterfiles/whitecaptennis.deepar",
-      "effects/newfilterfiles/BrownGlassesSingle.deepar",
-      "effects/newfilterfiles/DenimCapDarkBlackGlasses.deepar",
-      "effects/newfilterfiles/CloundSkyGlassesSingle.deepar",
-      "effects/newfilterfiles/BrownShadesRedCap.deepar",
-      "effects/newfilterfiles/WhiteBigFrameGlassesSingle.deepar",
-      "effects/newfilterfiles/BlueGlasses.deepar",
-      "effects/newfilterfiles/RedCapBlackQubeShadesGlasses.deepar",      
+      "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",      
     ];
 
 
