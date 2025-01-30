@@ -41,16 +41,21 @@ if (document.querySelector('#ar-screen')) {
     // All the effects are in the public/effects folder.
     // Here we define the order of effect files.
     const effectList = [
-      "effects/glasses/g1.deepar",
-      "effects/glasses/g2.deepar",
-      "effects/glasses/g3.deepar",
-      "effects/glasses/g4.deepar",
-      "effects/glasses/g8.deepar",
-      "effects/cap/cap2.deepar",
-      "effects/cap/cap3.deepar",
-      "effects/cap/cap4.deepar",
-      "effects/cap/cap2.deepar",
-      "effects/cap/cartry.deepar",
+      "effects/newfilterfiles/blueglasses.deepar",
+      "effects/newfilterfiles/bothcap-glasses.deepar",
+      "effects/newfilterfiles/brownglassessing.deepar",
+      "effects/newfilterfiles/brownshadesredcap.deepar",
+      "effects/newfilterfiles/cateyeglasses.deepar",
+      "effects/newfilterfiles/cloundksyglasses.deepar",
+      "effects/newfilterfiles/demincapallblackglasses.deepar",
+      "effects/newfilterfiles/fullblackqubeglassessing.deepar",
+      "effects/newfilterfiles/goldbrownglasses.deepar",
+      "effects/newfilterfiles/greencaponly.deepar",
+      "effects/newfilterfiles/redcapblackqubeshadesglasses.deepar",
+      "effects/newfilterfiles/redonlycap.deepar",
+      "effects/newfilterfiles/whitebigframeglasses.deepar",
+      "effects/newfilterfiles/whitecaptennis.deepar",
+      "effects/newfilterfiles/whiteshadesbluedenimcap.deepar",
 
     ];
 
