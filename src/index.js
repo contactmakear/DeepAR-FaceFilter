@@ -45,11 +45,14 @@ if (document.querySelector('#ar-screen')) {
     // Here we define the order of effect files.
 
     const effectList = [
-      "effects/newfilterfiles/WhiteShadesBlueDenimCap.deepar",
-      "effects/newfilterfiles/DarkBlackQubeGlassesSingle.deepar",
-      "effects/newfilterfiles/GreenCapSingle.deepar",
-      "effects/newfilterfiles/RedOnlyCap.deepar",
-      "effects/newfilterfiles/GoldBrownGlassesSingle.deepar",      
+      "effects/effects/glasses/g1.deepar",    
+      "effects/effects/glasses/g2.deepar",    
+      "effects/effects/glasses/g3.deepar",    
+      "effects/effects/glasses/g4.deepar",    
+      "effects/effects/glasses/g5.deepar",    
+      "effects/effects/glasses/g6.deepar",    
+      "effects/effects/glasses/g7.deepar",    
+      "effects/effects/glasses/g8.deepar",    
     ];
 
 
