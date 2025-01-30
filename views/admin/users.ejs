@@ -5,61 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Users</title>
     <style>
+        * {
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        #content {
+            width: 60%;
+            margin: 0px auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            padding: 12px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #007BFF;
+            color: white;
+            text-transform: uppercase;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
         }
         img {
             width: 50px;
             height: 50px;
-            border-radius: 5px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        .fallback-img {
+            background: #ddd;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 12px;
+            color: #666;
         }
         button {
-            background-color: red;
+            background-color: #007BFF;
             color: white;
             border: none;
-            padding: 5px 10px;
+            padding: 8px 12px;
             cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .delete-btn {
+            background-color: red;
+        }
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            color: #555;
+        }
+        .hidden {
+            display: none;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loading").classList.add("hidden");
+            document.getElementById("content").classList.remove("hidden");
+        });
+
+        function handleImageError(img) {
+            img.src = "";
+            img.classList.add("fallback-img");
+            img.alt = "No Image";
+            img.innerHTML = "No Image";
+        }
+    </script>
 </head>
 <body>
-    <h1>Users List</h1>
-    <table>
-        <tr>
-            <th>Phone</th>
-            <th>Age</th>
-            <th>Profile Images</th>
-            <th>Actions</th>
-        </tr>
-        <% users.forEach(user => { %>
+    <div id="loading" class="loading">Loading...</div>
+    <div id="content" class="hidden">
+        <h1>Users List</h1>
+        <table>
             <tr>
-                <td><%= user.phone %></td>
-                <td><%= user.age %></td>
-                <td>
-                    <% if (user.profileImages && user.profileImages.length > 0) { %>
-                        <% user.profileImages.forEach(image => { %>
-                            <img src="<%= image %>" alt="Profile Image">
-                        <% }) %>
-                    <% } else { %>
-                        No Image
-                    <% } %>
-                </td>
-                <td>
-                    <form action="/admin/users/<%= user._id %>" method="POST">
-                        <button type="submit">view</button>
-                    </form> |
-                    <form action="/admin/users/delete/<%= user._id %>" method="POST" style="display:inline;">
-                        <button type="submit" onclick="return confirm('Are you sure?');">Delete</button>
-                    </form>
-                </td>
+                <th>Phone</th>
+                <th>Age</th>
+                <th>Profile Images</th>
+                <th>Actions</th>
             </tr>
-        <% }) %>
-    </table>
+            <% users.forEach(user => { %>
+                <tr>
+                    <td><%= user.phone %></td>
+                    <td><%= user.age %></td>
+                    <td>
+                        <% if (user.profileImages && user.profileImages.length > 0) { %>
+                            <% user.profileImages.slice(0, 3).forEach(image => { %>
+                                <img src="<%= image %>" alt="Profile Image" onerror="handleImageError(this)">
+                            <% }) %>
+                            <% if (user.profileImages.length > 3) { %>
+                                <span>+<%= user.profileImages.length - 3 %> more</span>
+                            <% } %>
+                        <% } else { %>
+                            <div class="fallback-img">No Image</div>
+                        <% } %>
+                    </td>
+                    <td>
+                        <form action="/admin/users/<%= user._id %>" method="POST">
+                            <button type="submit">View</button>
+                        </form>
+                        <!-- <form action="/admin/users/delete/<%= user._id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure?');">Delete</button>
+                        </form> -->
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
 </body>
 </html>
