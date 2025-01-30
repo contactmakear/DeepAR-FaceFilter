@@ -59,16 +59,24 @@ exports.register = async function (req, res) {
 
     let user = new User({ phone, age, ageCheckbox, smokerCheckbox })
 
-    await user.register().then(() => {
-        req.session.user = { _id: user.data._id, phone: user.data.phone }
-        req.session.save(function () {
-            res.redirect('/')
-        })
+    await user.register().then((status) => {
+        if (status == 'success') {
+            req.session.user = { _id: user.data._id, phone: user.data.phone }
+            req.session.save(function () {
+                res.json({ status: 'Success' })
+                // res.redirect('/')
+            })
+        } else if (status == 'mobile exists') {
+            req.session.save(function () {
+
+            })
+        }
     }).catch((e) => {
         console.log(e);
         req.flash('errors', e)
         req.session.save(function () {
-            res.redirect('/')
+            res.json({ status: 'Failed' })
+            // res.redirect('/')
         })
     })
 }
@@ -81,18 +89,17 @@ exports.verifyPhone = function (req, res) {
     var config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `https://2factor.in/API/V1/c614dba0-dc92-11ef-8b17-0200cd936042/SMS/VERIFY/${req.body.details}/${req.body.userOTP}`,
+        url: `https://2factor.in/API/V1/${process.env.TWOFACTORKEY}/SMS/VERIFY/${req.body.details}/${req.body.userOTP}`,
         headers: {}
     }
 
     axios(config)
         .then(async (response) => {
             console.log(JSON.stringify(response.data));
-
             res.json(response.data.Status)
         })
         .catch((error) => {
-            console.log(error);
+            res.json("OTP Mismatch !!")
         })
 }
 
