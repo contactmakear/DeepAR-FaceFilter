@@ -83,13 +83,15 @@
       <div class="content otp-content">
         <div class="form-container">
           <h2>OTP VERIFICATION</h2>
-          <p>Enter the OTP sent to <span id="userPhone">+91 7060181991</span></p>
+          <p>Enter the OTP sent to <span id="userPhone"></span></p>
           <form id="otpForm">
             <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
               <input class="otp-input m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
               <input class="otp-input m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
               <input class="otp-input m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
               <input class="otp-input m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" type="text" id="sixth" maxlength="1" />
             </div>
 
           </form>
@@ -151,6 +153,10 @@
       }
     };
 
+    const getOTPValue = () => {
+      return Array.from(inputs).map(input => input.value).join('');
+    };
+
     form.addEventListener("input", (e) => {
       const target = e.target;
       const value = target.value;
@@ -204,8 +210,15 @@
     });
 
     verifyBtn.addEventListener("click", () => {
-      verifyOTP();
-      toggleVerifyButton();
+      const otpValue = getOTPValue();
+      // verifyOTP();
+
+      // toggleVerifyButton();
+      if (otpValue.length === 6) {
+
+      } else {
+        alert("Please enter a valid 6-digit OTP.");
+      }
     });
 
 
