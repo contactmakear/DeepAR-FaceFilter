@@ -102,7 +102,7 @@ export default function Form() {
 
       }
     }).catch(error => {
-      alert("Something went wrong !!")
+      alert("Something went wrong!! ", error)
       console.log('Error sending data:', error)
     })
   }

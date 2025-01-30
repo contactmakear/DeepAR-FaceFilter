@@ -102,11 +102,15 @@
             </div>
 
           </form>
-          <button id="verifyBtn" disabled type="submit">VERIFY & PROCEED</button>
-          <p id="resend-otp">Didn't receive the OTP? <span>RESEND OTP</span></p>
-        </div>
+          <button id="verifyBtn" disabled type="submit">VERIFY & PROCEED
+            <div class="btnLoader">
+
+            </div>
+        </div></button>
+        <p id="resend-otp">Didn't receive the OTP? <span>RESEND OTP</span></p>
       </div>
     </div>
+  </div>
   </div>
   </body>
   <script>
@@ -231,6 +235,25 @@
 
 
   </script>
+
+  <script>
+    function showLoader(button) {
+      const loader = document.querySelector('.btnLoader');
+      const verifyBtnOtp = document.querySelector('#verifyOtpBtn')
+      const verifyBtn = document.querySelector('#verifyBtn');
+
+      loader.style.display = 'block';
+      button.classList.add('loading');
+      button.disabled = true;
+
+      // setTimeout(() => {
+      //   loader.style.display = 'none';
+      //   verifyBtn.classList.remove('loading');
+      //   verifyBtn.disabled = false;
+      // }, 3000);
+    }
+  </script>
+
   <script src="main.js"></script>
 
   </html>

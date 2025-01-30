@@ -217,5 +217,3 @@ if (document.querySelector('#ar-screen')) {
 
 
 }
-
-
