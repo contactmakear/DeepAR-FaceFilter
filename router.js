@@ -11,6 +11,10 @@ router.get('/getAR', (req, res) => {
     res.render("ar")
 })
 
+router.get('/logout', (req, res) => {
+    res.render('logout')
+})
+
 router.get('/t&c', (req, res) => {
     res.render('t&c')
 })

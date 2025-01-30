@@ -75,7 +75,7 @@ export default function Form() {
 
                 axios.post('/register', formDataObject).then((response) => {
                   if (response.data.status == "Success") {
-                    window.location.href = "/ar"
+                    window.location.href = "/"
                   }
                 }).catch((err) => {
                   console.log(err);
