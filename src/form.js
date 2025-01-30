@@ -21,8 +21,8 @@ export default function Form() {
 
   document.addEventListener("DOMContentLoaded", function () {
     hideElement(loading, 300)
-    showElement(containerScene, 0, "flex")
-    showElement(landingScreen, 0, 'flex')
+    // showElement(containerScene, 0, "flex")
+    // showElement(landingScreen, 0, 'flex')
 
     setTimeout(() => {
       hideElement(landingScreen, 300)
@@ -31,33 +31,55 @@ export default function Form() {
 
     // loading.style.display = "none";
     // containerScene.style.display = "flex";
-    console.log("come");
   });
 
   // detailScreen.style.display = 'flex'
-  // detailsForm.addEventListener('submit', showOTPWindow)
+  detailsForm.addEventListener('submit', showOTPWindow)
 
   function showOTPWindow(e) {
     e.preventDefault()
 
-    axios.post('/register', {
+    const formData = new FormData(detailsForm)
+
+
+
+    const formDataObject = Object.fromEntries(formData.entries());
+
+
+    axios.post('/show-otp-screen', {
       phone: `+91${phone.value.trim()}`
     }).then(response => {
 
-      console.log(response);
       if (response.data.status == 'Success') {
         detailScreen.style.display = 'none'
         let otp = prompt("Please enter the OTP.")
+
         axios.post('/verify-otp', {
           details: response.data.details,
           userOTP: otp,
           phone: phone
         }).then((response) => {
-          console.log(response.data)
+          console.log("response console :", response);
           if (response.data == 'Success') {
             alert('OTP Matched')
-            window.location.href = "/ar"
+
+            axios.post('/register', formDataObject).then((response) => {
+              if (response.data.status == "Success") {
+                window.location.href = "/ar"
+              }
+            }).catch((err) => {
+              console.log(err);
+              alert('Something went wrong. Please try again later.')
+              window.location.href = '/'
+            })
+
+          } else {
+            alert('OTP Mismatch')
+            window.location.href = '/'
           }
+        }).catch((err) => {
+          alert('Error :', `${err}`)
+          window.location.href = '/'
         })
       }
     }).catch(error => {

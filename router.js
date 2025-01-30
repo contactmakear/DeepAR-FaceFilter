@@ -5,12 +5,13 @@ const { upload } = require("./src/imageHandler");
 const router = express.Router()
 
 router.get('/', userController.home)
-// router.get('/ar', userController.openAR)
+router.get('/ar', userController.mustBeLoggedIn, userController.openAR)
 
 
 router.post("/get-user-id", userController.getUserSession);
-router.post('/register', userController.register)
+router.post('/show-otp-screen', userController.showOTPScreen)
 router.post('/verify-otp', userController.verifyPhone)
+router.post('/register', userController.register)
 router.post("/upload", upload.single("image"), userController.uploadProfileImage);
 router.post('/logout', userController.logout)
 

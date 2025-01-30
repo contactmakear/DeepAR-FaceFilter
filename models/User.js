@@ -28,11 +28,7 @@ User.prototype.validate = function () {
     }
 
 
-    // Only if phone is valid then check to see if it's already taken
-    if (!this.errors.length) {
-      let phoneNumberExits = await usersCollection.findOne({ phone: this.data.phone })
-      if (phoneNumberExits) { this.errors.push("Phone number already registered.") }
-    }
+
     resolve()
   })
 }
@@ -60,13 +56,27 @@ User.prototype.register = function () {
     this.cleanUp()
     await this.validate()
 
-    //Submit data if there are no error
+    // Only if phone is valid then check to see if it's already taken
     if (!this.errors.length) {
-      await usersCollection.insertOne(this.data)
-      resolve('success')
+      let phoneNumberExits = await usersCollection.findOne({ phone: this.data.phone })
+      if (phoneNumberExits) {
+        //  this.errors.push("Phone number already registered.")  
+        resolve("success")
+      } else {
+        await usersCollection.insertOne(this.data)
+        resolve('success')
+      }
     } else {
       reject(this.errors)
     }
+
+    //Submit data if there are no error
+    // if (!this.errors.length) {
+    //   await usersCollection.insertOne(this.data)
+    //   resolve('success')
+    // } else {
+    //   reject(this.errors)
+    // }
   })
 }
 
