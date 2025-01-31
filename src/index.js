@@ -45,21 +45,21 @@ if (document.querySelector('#ar-screen')) {
     // Here we define the order of effect files.
 
     const effectList = [
-      "effects/filter_1.deepar",
-      "effects/filter_2.deepar",
-      "effects/filter_3.deepar",
-      "effects/filter_4.deepar",
-      "effects/filter_5.deepar",
-      "effects/filter_6.deepar",
-      "effects/filter_7.deepar",
-      "effects/filter_8.deepar",
-      "effects/filter_9.deepar",
-      "effects/filter_10.deepar",
-      "effects/filter_11.deepar",
-      "effects/filter_12.deepar",
-      "effects/filter_13.deepar",
-      "effects/filter_14.deepar",
-      "effects/filter_15.deepar",
+      "effects/viking_helmet.deepar",
+      "effects/ray-ban-wayfarer.deepar",
+      "effects/galaxy_background_web.deepar",
+      "effects/Hope.deepar",
+      "effects/Vendetta_Mask.deepar",
+      "effects/Stallone.deepar",
+      "effects/Split_View_Look.deepar",
+      "effects/Snail.deepar",
+      "effects/Shoes.deepar",
+      "effects/Pixel_Hearts.deepar",
+      "effects/Ping_Pong.deepar",
+      "effects/Neon_Devil_Horns.deepar",
+      "effects/MakeupLook.deepar",
+      "effects/Humanoid.deepar",
+      "effects/Fire_Effect.deepar",
     ];
 
 
