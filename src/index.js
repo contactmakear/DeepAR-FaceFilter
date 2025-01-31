@@ -45,23 +45,22 @@ if (document.querySelector('#ar-screen')) {
     // Here we define the order of effect files.
 
     const effectList = [
-      "effects/WhiteShadesBlueDenimCap.deepar",
-      "effects/DarkBlackQubeGlassesSingle.deepar",
-      "effects/GreenCapSingle.deepar",
-      "effects/RedOnlyCap.deepar",
-      "effects/GoldBrownGlassesSingle.deepar",
-      "effects/CatEyeGlasses.deepar",
-      "effects/BothCap-Glasses.deepar",
-      "effects/whitecaptennis.deepar",
-      "effects/BrownGlassesSingle.deepar",
-      "effects/DenimCapDarkBlackGlasses.deepar",
-      "effects/CloundSkyGlassesSingle.deepar",
-      "effects/BrownShadesRedCap.deepar",
-      "effects/WhiteBigFrameGlassesSingle.deepar",
-      "effects/BlueGlasses.deepar",
-      "effects/RedCapBlackQubeShadesGlasses.deepar",
+      "effects/viking_helmet.deepar",
+      "effects/ray-ban-wayfarer.deepar",
+      "effects/galaxy_background_web.deepar",
+      "effects/Hope.deepar",
+      "effects/Vendetta_Mask.deepar",
+      "effects/Stallone.deepar",
+      "effects/Split_View_Look.deepar",
+      "effects/Snail.deepar",
+      "effects/Shoes.deepar",
+      "effects/Pixel_Hearts.deepar",
+      "effects/Ping_Pong.deepar",
+      "effects/Neon_Devil_Horns.deepar",
+      "effects/MakeupLook.deepar",
+      "effects/Humanoid.deepar",
+      "effects/Fire_Effect.deepar",
     ];
-
 
     let deepAR = null;
 

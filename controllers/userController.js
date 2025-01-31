@@ -77,10 +77,6 @@ exports.register = async function (req, res) {
                 res.json({ status: 'Success' })
                 // res.redirect('/')
             })
-        } else if (status == 'mobile exists') {
-            req.session.save(function () {
-
-            })
         }
     }).catch((e) => {
         // console.log('error while register', e);
@@ -115,9 +111,11 @@ exports.verifyPhone = function (req, res) {
 }
 
 exports.logout = function (req, res) {
-    req.session.destroy(function () {
-        res.redirect('/')
-    })
+    if (req.session.user) {
+        req.session.destroy(function () {
+            res.redirect('/')
+        })
+    }
 }
 
 exports.getAllUsers = async function(req, res) {
