@@ -46,20 +46,21 @@ if (document.querySelector('#ar-screen')) {
 
     const effectList = [
       "effects/viking_helmet.deepar",
-      "effects/ray-ban-wayfarer.deepar",
+      "effects/Fire_Effect.deepar",
       "effects/galaxy_background_web.deepar",
       "effects/Hope.deepar",
-      "effects/Vendetta_Mask.deepar",
-      "effects/Stallone.deepar",
       "effects/Split_View_Look.deepar",
-      "effects/Snail.deepar",
-      "effects/Shoes.deepar",
-      "effects/Pixel_Hearts.deepar",
-      "effects/Ping_Pong.deepar",
       "effects/Neon_Devil_Horns.deepar",
-      "effects/MakeupLook.deepar",
       "effects/Humanoid.deepar",
-      "effects/Fire_Effect.deepar",
+      "effects/Vendetta_Mask.deepar",
+      "effects/Pixel_Hearts.deepar",
+      "effects/Stallone.deepar",
+      "effects/Shoes.deepar",
+      "effects/Ping_Pong.deepar",
+      "effects/Snail.deepar",
+      "effects/MakeupLook.deepar",
+      "effects/ray-ban-wayfarer.deepar",
+
     ];
 
     let deepAR = null;
