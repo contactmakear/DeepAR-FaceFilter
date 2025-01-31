@@ -3,6 +3,7 @@ import Carousel from "./carousel.js";
 import Form from "./form";
 import { takeScreenshot, displayScreenshot, loadImage, base64ToBlob } from "./camera.js";
 import axios from 'axios'
+import { hideElement } from "./utils.js";
 
 if (document.querySelector('.register-form')) {
   new Form()
@@ -26,6 +27,8 @@ if (document.querySelector('#ar-screen')) {
 
 
 
+
+
   // Log the version. Just in case.
   console.log("Deepar version: " + deepar.version);
 
@@ -40,26 +43,32 @@ if (document.querySelector('#ar-screen')) {
 
     // All the effects are in the public/effects folder.
     // Here we define the order of effect files.
-    const effectList = [
-      "effects/glasses/g1.deepar",
-      "effects/glasses/g2.deepar",
-      "effects/glasses/g3.deepar",
-      "effects/glasses/g4.deepar",
-      "effects/glasses/g8.deepar",
-      "effects/cap/cap2.deepar",
-      "effects/cap/cap3.deepar",
-      "effects/cap/cap4.deepar",
-      "effects/cap/cap2.deepar",
-      "effects/cap/cartry.deepar",
 
+    const effectList = [
+      "effects/WhiteShadesBlueDenimCap.deepar",
+      "effects/DarkBlackQubeGlassesSingle.deepar",
+      "effects/GreenCapSingle.deepar",
+      "effects/RedOnlyCap.deepar",
+      "effects/GoldBrownGlassesSingle.deepar",
+      "effects/CatEyeGlasses.deepar",
+      "effects/BothCap-Glasses.deepar",
+      "effects/whitecaptennis.deepar",
+      "effects/BrownGlassesSingle.deepar",
+      "effects/DenimCapDarkBlackGlasses.deepar",
+      "effects/CloundSkyGlassesSingle.deepar",
+      "effects/BrownShadesRedCap.deepar",
+      "effects/WhiteBigFrameGlassesSingle.deepar",
+      "effects/BlueGlasses.deepar",
+      "effects/RedCapBlackQubeShadesGlasses.deepar",
     ];
+
 
     let deepAR = null;
 
     try {
       deepAR = await deepar.initialize({
-        licenseKey: "67cab1e1e292d950d9a7ffa709562992fc647e116a60ea407e2431798546b10c0880d0ce5cbe0897",
-        previewElement,
+        licenseKey: "26f99e4a4c4526f420c18a101ef06d89a9aa64214c076cb765adc6ac6ea71985f974515335c431c8",
+        previewElement: document.querySelector('#ar-screen'),
         effect: effectList[0],
         rootPath: "./deepar-resources",
         additionalOptions: {
@@ -94,7 +103,7 @@ if (document.querySelector('#ar-screen')) {
     };
 
     // Add Screenshot Functionality
-    const screenshotButton = document.getElementById("carousel-center-button");
+    const screenshotButton = document.getElementById("carousel-center");
 
     screenshotButton.addEventListener("click", async () => {
       try {
@@ -102,10 +111,11 @@ if (document.querySelector('#ar-screen')) {
 
         // Capture Screenshot
         const newScreenshotCanvas = await takeScreenshot(deepAR, watermarkedCanvas)
+        console.log(newScreenshotCanvas)
 
         const userId = await getUserIdFromSession()
         if (!userId) {
-          console.error("User not logged in!");
+          console.error("user not logged in!");
           return;
         }
 
@@ -172,9 +182,35 @@ if (document.querySelector('#ar-screen')) {
     })
 
 
-
   })();
 
+  const button = document.getElementById('carousel-center-button');
+
+  setTimeout(() => {
+    button.style.opacity = "0"
+  }, 20000);  // 300000ms = 5 minutes
+
+
+
+  // Download Clicked Image with Frame
+  const downloadPhoto = document.getElementById('downloadPhoto');
+  const imageFrame = document.getElementById("share-screen");
+  var closeShareScreen = document.getElementById("close-share-screen");
+
+  downloadPhoto.addEventListener("click", function () {
+    closeShareScreen.style.display = 'none';
+    downloadPhoto.style.display = 'none';
+
+    html2canvas(imageFrame).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+
+      var link = document.createElement('a');
+      link.href = imgData;
+      link.download = "Social_Selfie.png";
+      link.click();
+      closeShareScreen.style.display = 'flex';
+    });
+  });
+
+
 }
-
-

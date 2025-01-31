@@ -1,23 +1,26 @@
 @font-face {
-  font-family: Gotham;
-  src: url(../assets/font/Gotham-Black.otf);
-  font-weight: bold;
+  font-family: "Gotham";
+  src: url("../assets/font/Gotham-Black.otf");
+  /* font-weight: bold; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Light;
-  src: url(../assets/font/GothamLight.ttf);
-  font-weight: light;
+  font-family: "Gotham-Light";
+  src: url("../assets/font/GothamLight.ttf");
+  /* font-weight: light; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Medium;
-  src: url(../assets/font/GothamMedium.ttf);
-  font-weight: medium;
+  font-family: "Gotham-Medium";
+  src: url("../assets/font/GothamMedium.ttf");
+  /* font-weight: medium; */
+  font-display: swap;
 }
 
 button {
-  font-family: Gotham-Medium;
+  font-family: "Gotham";
 }
 
 canvas.deepar {
@@ -39,8 +42,8 @@ body {
 #loading-screen,
 #permission-denied-screen,
 #permission-denied-background {
-  background-color: rgb(17 24 39 / 1);
-  background-image: url("./images/gradient.svg"), url("./images/bg-grid-dark.svg");
+  /* background-color: rgb(17 24 39 / 1); */
+  background-image: url("./images/Final_bg.png");
   background-repeat: no-repeat, repeat;
   display: flex;
   align-items: center;
@@ -65,7 +68,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
+  height: 90px;
   width: 100%;
 }
 
@@ -93,8 +96,8 @@ body {
 }
 
 .carousel-center {
-  width: 85px;
-  height: 85px;
+  width: 60px;
+  height: 60px;
   border: 4px solid #f0ec18;
   border-radius: 13%;
   z-index: 100;
@@ -103,21 +106,21 @@ body {
 }
 
 .carousel-slider .slide {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10%;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 18px;
+  margin-right: 18px;
 }
 
 .carousel-slider .slide.active {
-  margin-left: 24px;
-  margin-right: 24px;
-  width: 70px;
-  height: 70px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 50px;
+  height: 50px;
 }
 
 .slide {
@@ -148,8 +151,8 @@ body {
 }
 
 .responsive-img {
-  width: 80px;
-  height: 65px;
+  width: 100%;
+  /* height: 65px; */
 }
 
 /* Loading spinner */
@@ -221,7 +224,7 @@ body {
 
 #loading-progress-bar {
   width: 0%;
-  background: rgb(0 98 209 / 1);
+  background: #F8B200;
   height: 100%;
   transition: width 5s ease-out;
 }
@@ -282,16 +285,16 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  bottom: 20%;
-
-
+  bottom: 12%;
   transition: left 0.3s ease;
   will-change: transform;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
 }
 
 .button-slider .slides {
   /* border: 10px solid rgba(217, 217, 217, 0.34); */
-  width: 60px;
+  width: 185.13px;
   height: 60px;
   display: flex;
   align-items: center;
@@ -361,9 +364,10 @@ body {
 
 .Download {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  bottom: 2dvh;
+  /* width: 100%; */
 }
+
 
 /* button{
   width: 80%;
@@ -396,7 +400,7 @@ body {
   bottom: 20px;
 } */
 
-button {
+/* button {
   cursor: pointer;
   padding: 10px 2.5rem;
   border: 0.82px solid #FFFFFF;
@@ -411,7 +415,7 @@ button {
   margin: auto;
   max-width: 100%;
   margin-top: 1.5rem;
-}
+} */
 
 .no-select {
   position: absolute;
@@ -422,8 +426,8 @@ button {
   z-index: 300;
   background-color: black;
   border-radius: 100%;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;

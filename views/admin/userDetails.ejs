@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - User Details</title>
+</head>
+<body>
+    <h1>User Details</h1>
+    <p><strong>Phone:</strong> <%= user.phone %></p>
+    <p><strong>Age:</strong> <%= user.age %></p>
+    <p><strong>Age Checkbox:</strong> <%= user.ageCheckbox %></p>
+    <p><strong>Smoker Checkbox:</strong> <%= user.smokerCheckbox %></p>
+
+    <h3>Profile Images</h3>
+    <% if (user.profileImages && user.profileImages.length > 0) { %>
+        <% user.profileImages.forEach(image => { %>
+            <img src="<%= image %>" width="100" height="100" alt="Profile Image">
+        <% }) %>
+    <% } else { %>
+        <p>No images available</p>
+    <% } %>
+
+    <br><br>
+    <a href="/admin/users">Back to Users</a>
+</body>
+</html>

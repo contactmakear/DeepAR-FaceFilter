@@ -4,6 +4,16 @@ const { User, updateUserProfileImage } = require('../models/User')
 const { processImage } = require("../src/imageHandler");
 const dotenv = require('dotenv').config()
 
+exports.passwordProtected = function (req, res, next) {
+    res.set("WWW-Authenticate", "Basic realm ='makearsiteejs")
+    if (req.headers.authorization == "Basic Z2Zzb2NpYWwtYWRtaW46TEVUTUVJTkBnZnNvY2lhbA==") {
+        next(); 
+    } else {
+        // console.log(req.headers.authorization);
+        res.status(401).send("Try again");
+    }
+}
+
 exports.home = function (req, res) {
     if (req.session.user) {
         res.render('ar')
@@ -41,7 +51,7 @@ exports.showOTPScreen = function (req, res) {
 
     axios(sendOTP)
         .then(function (response) {
-            console.log(JSON.stringify(response.data))
+            // console.log('response.data after sending OTP', JSON.stringify(response.data))
             details = {
                 status: response.data.Status,
                 details: response.data.Details,
@@ -49,21 +59,35 @@ exports.showOTPScreen = function (req, res) {
             res.json(details)
         })
         .catch(function (error) {
-            console.log(error);
+            res.json({ status: error.Details })
+            // console.log("error while sending otp", error);
         });
 }
 
 exports.register = async function (req, res) {
-    let user = new User(req.body)
-    await user.register().then(() => {
-        req.session.user = { _id: user.data._id, phone: user.data.phone }
-        req.session.save(function () {
-            res.redirect('/')
-        })
+
+    const { phone, age, ageCheckbox, smokerCheckbox } = req.body
+
+    let user = new User({ phone, age, ageCheckbox, smokerCheckbox })
+
+    await user.register().then((status) => {
+        if (status == 'success') {
+            req.session.user = { _id: user.data._id, phone: user.data.phone }
+            req.session.save(function () {
+                res.json({ status: 'Success' })
+                // res.redirect('/')
+            })
+        } else if (status == 'mobile exists') {
+            req.session.save(function () {
+
+            })
+        }
     }).catch((e) => {
+        // console.log('error while register', e);
         req.flash('errors', e)
         req.session.save(function () {
-            res.redirect('/')
+            res.json({ status: 'Failed' })
+            // res.redirect('/')
         })
     })
 }
@@ -76,18 +100,17 @@ exports.verifyPhone = function (req, res) {
     var config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `https://2factor.in/API/V1/c614dba0-dc92-11ef-8b17-0200cd936042/SMS/VERIFY/${req.body.details}/${req.body.userOTP}`,
+        url: `https://2factor.in/API/V1/${process.env.TWOFACTORKEY}/SMS/VERIFY/${req.body.details}/${req.body.userOTP}`,
         headers: {}
     }
 
     axios(config)
         .then(async (response) => {
-            console.log(JSON.stringify(response.data));
-
+            // console.log('response.data while sending verifyPhone', JSON.stringify(response.data));
             res.json(response.data.Status)
         })
         .catch((error) => {
-            console.log(error);
+            res.json("OTP Mismatch !!")
         })
 }
 
@@ -95,6 +118,32 @@ exports.logout = function (req, res) {
     req.session.destroy(function () {
         res.redirect('/')
     })
+}
+
+exports.getAllUsers = async function(req, res) {
+    await User.userQuery().then(function (users) {
+        res.render('admin/users', { users })
+    }).catch(function (e) {
+        console.log(e)
+    })
+}
+
+exports.getUserById = async (req, res) => {
+    const user = await User.userById(req.params._id)
+
+    if (!user) {
+        return res.status(404).send("User not found")
+    }
+    res.render('admin/userDetails', { user })
+}
+
+exports.deleteUser = async (req, res) => {
+    const user = await User.deleteUser(req.params._id)
+
+    if (!user) {
+        return res.status(404).send("User not found")
+    }
+    res.redirect('/admin/users')
 }
 
 // API to Upload and Update Profile Image

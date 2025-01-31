@@ -1,19 +1,22 @@
 @font-face {
-  font-family: Gotham;
-  src: url(../assets/font/Gotham-Black.otf);
-  font-weight: bold;
+  font-family: "Gotham";
+  src: url("../assets/font/Gotham-Black.otf");
+  /* font-weight: bold; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Light;
-  src: url(../assets/font/GothamLight.ttf);
-  font-weight: light;
+  font-family: "Gotham-Light";
+  src: url("../assets/font/Gotham-Light.otf");
+  /* font-weight: light; */
+  font-display: swap;
 }
 
 @font-face {
-  font-family: Gotham-Medium;
-  src: url(../assets/font/GothamMedium.ttf);
-  font-weight: medium;
+  font-family: "Gotham-Medium";
+  src: url("../assets/font/Gotham-Bold.otf");
+  /* font-weight: medium; */
+  font-display: swap;
 }
 
 .landing-screen {
@@ -21,7 +24,7 @@
 }
 
 .details-screen {
-  display: flex;
+  display: none;
 }
 
 .otp-screen {
@@ -36,37 +39,41 @@
 }
 
 h2 {
-  font-family: Gotham;
+  font-family: "Gotham";
 }
 
 p {
-  font-family: Gotham-Light;
+  font-family: "Gotham-Light";
   padding: 10px;
   font-size: 14px;
   font-weight: 300;
 }
 
 button {
-  font-family: Gotham-Medium;
+  font-family: "Gotham";
 }
 
 input {
-  font-family: Gotham-Light;
+  /* font-family: Gotham-Light; */
   font-weight: 300;
   font-size: 14px;
 }
 
 label {
-  font-family: Gotham-Light;
+  /* font-family: "Gotham-Light"; */
   font-size: 14px;
   font-weight: 300;
   color: #FFFFFFCC;
-
-  text-align: left;
+  /* text-align: left; */
 }
 
 #containerScene {
-  display: none;
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  height: 100dvh;
+  top: 0;
+  left: 0;
 }
 
 .loading-screen {
@@ -75,7 +82,8 @@ label {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("/images/loading_Bg.png");
+  /* background-image: url("/images/loading_Bg.png"); */
+  background-image: url(/images/loading_Bg.png), linear-gradient(180deg, #730008 0%, #294B27 100%);
   background-size: cover;
   /* Adjusts both images to cover the element */
   background-position: center;
@@ -85,6 +93,7 @@ label {
   /* display: flex; */
   justify-content: center;
   align-items: center;
+  z-index: 10;
 }
 
 .img-loading {
@@ -111,6 +120,21 @@ label {
   /* display: flex; */
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+  transition: all 300ms ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  width: 100vw;
+}
+
+.landing-screen {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .landing-container {
@@ -229,14 +253,15 @@ h2 {
 }
 
 input[type="tel"],
+input[type="number"],
 input[type="text"] {
   color: rgba(190, 190, 190, 1);
   background: rgba(37, 46, 42, 1);
   border: 1px solid rgba(248, 214, 64, 1);
   border-radius: 45px;
   padding: 10px 14px;
-  line-height: 1;
-  size: letter;
+  line-height: 1.2;
+  /* size: letter; */
 }
 
 
@@ -245,20 +270,49 @@ input[type="tel"] {
 }
 
 input[type="tel"]::placeholder,
+input[type="number"]::placeholder,
 input[type="text"]::placeholder {
+  padding: 14px 0;
   color: #BEBEBE;
+
 }
 
+
+input[type="tel"]::-webkit-input-placeholder,
+input[type="number"]::-webkit-input-placeholder,
+input[type="text"]::-webkit-input-placeholder {
+  color: #BEBEBE;
+  padding: 14px 0;
+
+}
+
+input[type="tel"]:-moz-placeholder,
+input[type="number"]:-moz-placeholder,
+input[type="text"]:-moz-placeholder {
+  color: #BEBEBE;
+  padding: 14px 0;
+
+}
+
+
+
+/* input[type="tel"]:focus:placeholder,
+input[type="number"]:focus:placeholder {
+  color: transparent;
+} */
+
 input[type="checkbox"] {
-  /* width: 20px; */
-  /* height: 20px; */
-  scale: 1.5;
+  box-sizing: border-box;
+  width: max-content;
+  height: 20px;
+  position: relative;
+  top: 5px;
 }
 
 .checkbox input {
-  position: absolute;
+  /* position: absolute;
   opacity: 0;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .checkbox label {
@@ -321,8 +375,8 @@ input:-webkit-autofill {
   animation-duration: 5000s;
 }
 
-
-/* button {
+/* 
+button {
   width: 80%;
   margin: auto;
   margin-top: 10px;
@@ -335,10 +389,10 @@ input:-webkit-autofill {
   border: 3px solid rgba(255, 255, 255, 1);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: rgba(221, 191, 59, 1);
-  ;
+
   font-size: 18px;
   color: rgba(72, 72, 72, 1);
-  ;
+
   text-transform: uppercase;
 
   border-radius: 50px;
@@ -350,6 +404,9 @@ input:-webkit-autofill {
   transition-property: color;
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
+
+  -webkit-appearance: none;
+  appearance: none;
 } */
 
 
@@ -368,6 +425,10 @@ button {
   margin: auto;
   max-width: 100%;
   margin-top: 1.5rem;
+  -webkit-text-size-adjust: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
 }
 
 .form-container {
@@ -380,16 +441,17 @@ button {
 .checkbox-group a {
   display: inline-block;
   color: #FFFFFFCC;
-  font-family: Gotham;
+  font-family: "Gotham";
   font-size: 14px;
 }
 
 .checkbox-group {
   /* margin: 25px 25px 0px 25px; */
-  display: flex;
+  /* display: flex; */
   align-items: center;
+  justify-content: flex-start;
   gap: 10px;
-  padding: 0 8px;
+  padding: 8px;
 }
 
 #otp {
@@ -399,12 +461,13 @@ button {
 #otp input[type="text"] {
   border-radius: 4px;
   text-align: center;
-  margin: 05px;
+  padding: 4px;
+  /* margin: 05px; */
 }
 
 .inputs input {
-  width: 20px;
-  height: 20px
+  width: 32px;
+  height: 32px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -422,6 +485,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .otp-screen p {
   padding: 0;
+  font-family: unset;
 }
 
 #otpForm {
@@ -435,7 +499,6 @@ input[type=number]::-webkit-outer-spin-button {
 #verifyBtn {
   margin-top: 6rem;
   box-shadow: 0px 4px 4px 0px #00000040;
-
 }
 
 #resend-otp {
@@ -457,7 +520,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .form-control:focus {
   box-shadow: none;
-  border: 2px solid rgba(248, 214, 64, 1)
+  border: 2px solid rgba(248, 214, 64, 1);
+  border-radius: 4px;
 }
 
 .validate {
@@ -470,14 +534,17 @@ input[type=number]::-webkit-outer-spin-button {
 
 #otp input:focus-visible {
   outline: 2px solid rgba(248, 214, 64, 1);
+
 }
 
 #otp input.filled {
   border: 2px solid rgb(7, 192, 99);
+  border-radius: 4px;
 }
 
 #otp input.filled:focus-visible {
   border: 2px solid rgba(248, 214, 64, 1);
+  border-radius: 4px;
   /* outline: none; */
 }
 
@@ -488,12 +555,100 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 .alert-danger {
-  color: #ff0000;
+  background: #ff0000;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.form-error {
+  position: absolute;
+  color: #E94949;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  pointer-events: none;
 }
 
 
-/* .otp-screen {
+#downloadPhoto {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+
+label,
+button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+input::placeholder {
+  color: #BEBEBE !important;
+  opacity: 1 !important;
+}
+
+.otp-screen .content {
+  width: 90vw;
+}
+
+
+
+.btnLoader {
+  border: 4px solid 4px solid rgba(255,255,255,0);
+  border-top: 4px solid rgba(248, 214, 64, 1);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spinLoader 1s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+}
+
+@keyframes spinLoader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+button.loading .btnLoader {
+  display: block;
+}
+
+button.loading {
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: unset !important;
+  color: transparent !important;
+
+  /* Remove padding to fit loader in button */
+}
+
+button.loading::before {
+  content: " ";
+  /* Empty content */
+  visibility: hidden;
+  /* Hide button text */
+}
+
+/* 
+.otp-screen {
   display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .details-screen {

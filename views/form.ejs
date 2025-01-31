@@ -35,24 +35,49 @@
               <!-- TURN IT ON WHEN NEEDED (ACTUAL FORM) -->
 
 
-              <form class="register-form" id="detailsForm" method="POST" action="/register">
-                <input type="text" placeholder="Enter Age*" name="age" required>
-                <input class="phone" type="tel" maxlength="10" name="phone" placeholder="Enter Mobile Number*"
-                  oninput="validatePhoneNumber(this)" required>
+              <form class="register-form" id="detailsForm">
+
+                <div class="input-container">
+                  <input type="number" placeholder="Enter Age*" name="age" required>
+                  <!-- <p id="ageError" class="form-error">Age must be between 18 and 110. -->
+                  </p>
+                </div>
+
+                <div class="input-container">
+                  <input class="phone" class="phone" type="tel" maxlength="10" name="phone"
+                    placeholder="Enter Mobile Number*" oninput="validatePhoneNumber(this)" required>
+                  <!-- <p id="phoneError" class="form-error">Phone number must be 10
+                    digits.</p> -->
+                </div>
+
                 <div class="checkbox-group">
-                  <input id="age-checkbox" type="checkbox" required>
+                  <input class="age" name="ageCheckbox" id="age-checkbox" type="checkbox" value="accepted" required>
                   <!-- <span class="checkmark"></span> -->
-                  <label for="age-checkbox">I am older than 18 years of age and agree to the <a href="#">Terms &
+                  <label for="age-checkbox">I am older than 18 years of age and agree to the <a target="_blank"
+                      href="/t&c">Terms &
                       Conditions</a></label>
                 </div>
-                <div class="checkbox-group" required>
-                  <input id="smoker-checkbox" type="checkbox">
+                <!-- <p id="ageCheckboxError" class="form-error">You must agree to the
+                  terms and
+                  conditions.</p> -->
+
+                <div class="checkbox-group">
+                  <input required name="smokerCheckbox" id="smoker-checkbox" value="accepted" type="checkbox">
                   <!-- <span class="checkmark"></span> -->
                   <label for="smoker-checkbox">
                     I am a smoker
                   </label>
                 </div>
-                <button id="verifyOtpBtn" type="submit">GET OTP</button>
+                <!-- <p id="smokerCheckboxError" class="form-error">Please confirm if
+                  you are a smoker.
+                </p> -->
+
+                <button id="verifyOtpBtn" type="submit">GET OTP
+
+                  <div class="btnLoader">
+
+                  </div>
+                </button>
               </form>
         </div>
       </div>
@@ -64,21 +89,33 @@
       <div class="content otp-content">
         <div class="form-container">
           <h2>OTP VERIFICATION</h2>
-          <p>Enter the OTP sent to <span id="userPhone">+91 7060181991</span></p>
+          <p>Enter the OTP sent to <span id="userPhone"></span></p>
           <form id="otpForm">
             <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="first"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="second"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="third"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="fourth"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="fifth"
+                maxlength="1" />
+              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="sixth"
+                maxlength="1" />
             </div>
 
           </form>
-          <button id="verifyBtn" type="submit">VERIFY & PROCEED</button>
-          <p id="resend-otp">Didn't receive the OTP? <span>RESEND OTP</span></p>
-        </div>
+          <button id="verifyBtn" disabled type="submit">VERIFY & PROCEED
+            <div class="btnLoader">
+
+            </div>
+        </div></button>
+        <!-- <p id="resend-otp">Didn't receive the OTP? <span>RESEND OTP</span></p> -->
       </div>
     </div>
+  </div>
   </div>
   </body>
   <script>
@@ -86,11 +123,11 @@
     const loading = document.getElementById("loading");
     const containerScene = document.getElementById("containerScene");
 
-    document.addEventListener("DOMContentLoaded", function () {
-      loading.style.display = "none";
-      containerScene.style.display = "flex";
-      console.log("come");
-    });
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   loading.style.display = "none";
+    //   containerScene.style.display = "flex";
+    //   console.log("come");
+    // });
 
     console.log("wow");
   </script>
@@ -127,9 +164,14 @@
     const toggleVerifyButton = () => {
       if (isAllInputFilled()) {
         verifyBtn.removeAttribute("disabled");
+        inputs[5].blur();
       } else {
         verifyBtn.setAttribute("disabled", "true");
       }
+    };
+
+    const getOTPValue = () => {
+      return Array.from(inputs).map(input => input.value).join('');
     };
 
     form.addEventListener("input", (e) => {
@@ -184,13 +226,22 @@
       inputs[0].focus();
     });
 
-    verifyBtn.addEventListener("click", () => {
-      verifyOTP();
-      toggleVerifyButton();
-    });
+    // verifyBtn.addEventListener("click", () => {
+    //   const otpValue = getOTPValue();
+    //   // verifyOTP();
+
+    //   // toggleVerifyButton();
+    //   if (otpValue.length === 6) {
+
+    //   } else {
+    //     alert("Please enter a valid 6-digit OTP.");
+    //   }
+    // });
 
 
   </script>
+
+
   <script src="main.js"></script>
 
   </html>
