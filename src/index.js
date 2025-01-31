@@ -102,7 +102,7 @@ if (document.querySelector('#ar-screen')) {
     };
 
     // Add Screenshot Functionality
-    const screenshotButton = document.getElementById("carousel-center");
+    const screenshotButton = document.getElementById("carousel-center-button");
 
     screenshotButton.addEventListener("click", async () => {
       try {
@@ -122,6 +122,13 @@ if (document.querySelector('#ar-screen')) {
 
         const imgBlob = base64ToBlob(imgFileBase64, "image/jpeg")
         const file = new File([imgBlob], `social-capture-${Date.now()}.jpg`, { type: "image/jpeg" })
+
+        const shareImageContainer = document.querySelector('#share-image-container')
+        shareImageContainer.style.backgroundImage = `url(${imgFileBase64})`;
+
+        document.getElementById("share-screen").style.display = "flex";
+
+
         await uploadScreenshot(file, userId)
 
         // Display the Screenshot
@@ -131,7 +138,7 @@ if (document.querySelector('#ar-screen')) {
         deepAR.setPaused(true);
 
         // Update UI
-        document.getElementById("share-screen").style.display = "flex";
+        // document.getElementById("share-screen").style.display = "flex";
       } catch (error) {
         console.error("Error taking screenshot:", error);
       }
@@ -161,7 +168,7 @@ if (document.querySelector('#ar-screen')) {
         });
 
         const shareImageContainer = document.querySelector('#share-image-container')
-        shareImageContainer.style.backgroundImage = `url(${response.data.imagePath})`
+        // shareImageContainer.style.backgroundImage = `url(${response.data.imagePath})`
         console.log("Uploaded Image Path:", response.data.imagePath);
       } catch (error) {
         console.error("Error uploading screenshot:", error);
@@ -172,6 +179,8 @@ if (document.querySelector('#ar-screen')) {
 
     closeShareScreenButton.addEventListener("click", () => {
       // Hide the share screen
+      const shareImageContainer = document.querySelector('#share-image-container')
+      shareImageContainer.style.backgroundImage = ''
       document.getElementById("share-screen").style.display = "none";
       document.querySelector('#downloadPhoto').style.display = "block"
 
@@ -184,11 +193,11 @@ if (document.querySelector('#ar-screen')) {
 
   })();
 
-  const button = document.getElementById('carousel-center-button');
+  // const button = document.getElementById('carousel-center-button');
 
-  setTimeout(() => {
-    button.style.opacity = "0"
-  }, 20000);  // 300000ms = 5 minutes
+  // setTimeout(() => {
+  //   button.style.opacity = "0"
+  // }, 20000);  // 300000ms = 5 minutes
 
 
 

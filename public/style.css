@@ -151,8 +151,8 @@ body {
 }
 
 .responsive-img {
-  width: 100%;
-  /* height: 65px; */
+  width: 70px;
+  height: 70px;
 }
 
 /* Loading spinner */
@@ -285,7 +285,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  bottom: 12%;
+  bottom: 105px;
   transition: left 0.3s ease;
   will-change: transform;
   opacity: 1;
