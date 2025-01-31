@@ -173,6 +173,7 @@ if (document.querySelector('#ar-screen')) {
     closeShareScreenButton.addEventListener("click", () => {
       // Hide the share screen
       document.getElementById("share-screen").style.display = "none";
+      document.querySelector('#downloadPhoto').style.display = "block"
 
       // Optionally resume DeepAR
       if (typeof deepAR !== "undefined" && deepAR) {
