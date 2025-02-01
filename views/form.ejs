@@ -92,18 +92,19 @@
           <p>Enter the OTP sent to <span id="userPhone"></span></p>
           <form id="otpForm">
             <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="first"
-                maxlength="1" />
-              <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="second"
-                maxlength="1" />
+              <input name="otp" class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text"
+                autocomplete="one-time-code" id="first" maxlength="6" />
+
+              <!-- <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="second"
+                autocomplete="one-time-code" maxlength="1" />
               <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="third"
-                maxlength="1" />
+                autocomplete="one-time-code" maxlength="1" />
               <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="fourth"
-                maxlength="1" />
+                autocomplete="one-time-code" maxlength="1" />
               <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="fifth"
-                maxlength="1" />
+                autocomplete="one-time-code" maxlength="1" />
               <input class="otp-input m-2 text-center form-control rounded" inputmode="numeric" type="text" id="sixth"
-                maxlength="1" />
+                autocomplete="one-time-code" maxlength="1" /> -->
             </div>
 
           </form>
@@ -118,129 +119,200 @@
   </div>
   </div>
   </body>
-  <script>
 
-    const loading = document.getElementById("loading");
-    const containerScene = document.getElementById("containerScene");
 
-    // document.addEventListener("DOMContentLoaded", function () {
-    //   loading.style.display = "none";
-    //   containerScene.style.display = "flex";
-    //   console.log("come");
-    // });
-
-    console.log("wow");
-  </script>
   <script>
     function validatePhoneNumber(input) {
       let value = input.value;
-      // Remove any non-numeric characters (optional, if you want only numbers)
       value = value.replace(/\D/g, "");
-
-      // Set the value back to the input field, limiting to 10 digits
       if (value.length > 10) {
         value = value.substring(0, 10);
       }
-
-      input.value = value; // Set the updated value back to input
+      input.value = value;
     }
 
-    const form = document.querySelector("#otp");
-    const inputs = document.querySelectorAll(".otp-input");
-    const verifyBtn = document.querySelector("#verifyBtn");
 
-    const toggleFilledClass = (field) => {
-      if (field.value) {
-        field.classList.add("filled");
-      } else {
-        field.classList.remove("filled");
+  </script>
+
+  <!--! Get OPT with 6 input  -->
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector("#otp");
+      const inputs = document.querySelectorAll(".otp-input");
+      const verifyBtn = document.querySelector("#verifyBtn");
+
+      inputs[0].focus();
+
+      if ("OTPCredential" in window) {
+        navigator.credentials.get({ otp: { transport: ["sms"] } })
+          .then(otp => {
+            if (otp && otp.code) {
+              fillOTP(otp.code);
+            }
+          })
+          .catch(err => console.error("OTP Auto-fill failed:", err));
       }
-    };
 
-    const isAllInputFilled = () => {
-      return Array.from(inputs).every((input) => input.value);
-    };
+      inputs.forEach(input => {
+        input.setAttribute("autocomplete", "one-time-code");
+      });
 
-    const toggleVerifyButton = () => {
-      if (isAllInputFilled()) {
-        verifyBtn.removeAttribute("disabled");
-        inputs[5].blur();
-      } else {
-        verifyBtn.setAttribute("disabled", "true");
-      }
-    };
+      const fillOTP = (otp) => {
+        const otpArray = otp.split("").slice(0, inputs.length);
+        inputs.forEach((input, index) => {
+          input.value = otpArray[index] || "";
+          toggleFilledClass(input);
+        });
+        toggleVerifyButton();
+        inputs[inputs.length - 1].blur();
+      };
 
-    const getOTPValue = () => {
-      return Array.from(inputs).map(input => input.value).join('');
-    };
+      const toggleFilledClass = (field) => {
+        if (field.value) {
+          field.classList.add("filled");
+        } else {
+          field.classList.remove("filled");
+        }
+      };
 
-    form.addEventListener("input", (e) => {
-      const target = e.target;
-      const value = target.value;
-      console.log({ target, value });
-      toggleFilledClass(target);
-      if (target.nextElementSibling) {
-        target.nextElementSibling.focus();
-      }
-      toggleVerifyButton();
-    });
+      const isAllInputFilled = () => {
+        return Array.from(inputs).every(input => input.value);
+      };
 
-    inputs.forEach((input, currentIndex) => {
-      // fill check
-      toggleFilledClass(input);
+      const toggleVerifyButton = () => {
+        if (isAllInputFilled()) {
+          verifyBtn.removeAttribute("disabled");
+          inputs[inputs.length - 1].blur();
+        } else {
+          verifyBtn.setAttribute("disabled", "true");
+        }
+      };
 
-      // paste event
-      input.addEventListener("paste", (e) => {
-        e.preventDefault();
-        const text = e.clipboardData.getData("text");
-        console.log(text);
-        inputs.forEach((item, index) => {
-          if (index >= currentIndex && text[index - currentIndex]) {
-            item.focus();
-            item.value = text[index - currentIndex] || "";
-            toggleFilledClass(item);
-            toggleVerifyButton(); // Check after pasting
+      const getOTPValue = () => {
+        return Array.from(inputs).map(input => input.value).join('');
+      };
+
+      form.addEventListener("input", (e) => {
+        const target = e.target;
+        toggleFilledClass(target);
+
+        if (target.value && target.nextElementSibling) {
+          target.nextElementSibling.focus();
+        }
+
+        toggleVerifyButton();
+      });
+
+      inputs.forEach((input, index) => {
+        toggleFilledClass(input);
+
+        input.addEventListener("paste", (e) => {
+          e.preventDefault();
+          const text = e.clipboardData.getData("text").trim().slice(0, inputs.length);
+          fillOTP(text);
+        });
+
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && !input.value && input.previousElementSibling) {
+            input.previousElementSibling.focus();
           }
         });
       });
 
-      // backspace event
-      input.addEventListener("keydown", (e) => {
-        if (e.keyCode === 8) {
-          e.preventDefault();
-          input.value = "";
-          toggleFilledClass(input);
-          if (input.previousElementSibling) {
-            input.previousElementSibling.focus();
+      inputs.forEach(input => {
+        input.addEventListener("input", () => {
+          if (input.value) {
+            if (input.nextElementSibling && !input.nextElementSibling.value) {
+              input.nextElementSibling.focus();
+            }
           }
-        } else {
-          if (input.value && input.nextElementSibling) {
-            input.nextElementSibling.focus();
-          }
-        }
-        toggleVerifyButton();
+        });
+      });
+
+      window.addEventListener("load", () => {
+        inputs[0].focus();
       });
     });
 
-    window.addEventListener("load", () => {
-      inputs[0].focus();
+  </script>
+ -->
+
+
+
+  <!--! Get OTP with single OTP input -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const form = document.querySelector("#otp");
+      const input = document.querySelector(".otp-input");
+      const verifyBtn = document.querySelector("#verifyBtn")
+
+      input.focus();
+
+      if ("OTPCredential" in window) {
+        navigator.credentials.get({ otp: { transport: ["sms"] } })
+          .then(otp => {
+            if (otp && otp.code) {
+              fillOTP(otp.code);
+            }
+          })
+          .catch(err => console.error("OTP Auto-fill failed:", err));
+      }
+
+      input.setAttribute("autocomplete", "one-time-code");
+      input.setAttribute("maxlength", "6");
+
+      const fillOTP = (otp) => {
+        input.value = sanitizeOTP(otp);
+        toggleFilledClass(input);
+        toggleVerifyButton();
+        if (input.value.length === 6) input.blur();
+      };
+
+      const sanitizeOTP = (otp) => {
+        return otp.replace(/[^0-9]/g, "").trim().slice(0, 6);
+      };
+
+      const getOTP = () => {
+        return sanitizeOTP(input.value);
+      };
+
+      const toggleFilledClass = (field) => {
+        if (field.value) {
+          field.classList.add("filled");
+        } else {
+          field.classList.remove("filled");
+        }
+      };
+
+      const toggleVerifyButton = () => {
+        if (input.value.length === 6) {
+          verifyBtn.removeAttribute("disabled");
+          input.blur();
+        } else {
+          verifyBtn.setAttribute("disabled", "true");
+        }
+      };
+
+      input.addEventListener("input", () => {
+        input.value = sanitizeOTP(input.value);
+        toggleFilledClass(input);
+        toggleVerifyButton();
+      });
+
+      input.addEventListener("paste", (e) => {
+        e.preventDefault();
+        let text = e.clipboardData.getData("text").replace(/[^0-9]/g, "").trim().slice(0, 6);
+        fillOTP(text);
+      });
+
+      window.addEventListener("load", () => {
+        input.focus();
+      });
     });
 
-    // verifyBtn.addEventListener("click", () => {
-    //   const otpValue = getOTPValue();
-    //   // verifyOTP();
-
-    //   // toggleVerifyButton();
-    //   if (otpValue.length === 6) {
-
-    //   } else {
-    //     alert("Please enter a valid 6-digit OTP.");
-    //   }
-    // });
-
-
   </script>
-
 
   <script src="main.js"></script>
 

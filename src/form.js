@@ -44,6 +44,14 @@ export default function Form() {
     showLoader(verifyOtpBtn)
   })
 
+  const sanitizeOTP = (otp) => {
+    return otp.replace(/[^0-9]/g, "").trim().slice(0, 6);
+  };
+
+  const getOTP = () => {
+    return sanitizeOTP(firstOTPInput.value);
+  };
+
   function showOTPWindow() {
 
 
@@ -72,7 +80,7 @@ export default function Form() {
 
           showLoader(verifyBtn)
 
-          otp = getOTPValue();
+          otp = getOTP();
           if (otp.length === 6) {
             axios.post('/verify-otp', {
               details: response.data.details,
