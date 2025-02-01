@@ -119,11 +119,18 @@ exports.logout = function (req, res) {
 }
 
 exports.getAllUsers = async function(req, res) {
-    await User.userQuery().then(function (users) {
-        res.render('admin/users', { users })
-    }).catch(function (e) {
-        console.log(e)
-    })
+    try {
+        const users = await User.userQuery();
+        const totalUsers = await User.getUserCount();
+        res.render('admin/users', { users, totalUsers });
+    } catch (err) {
+        res.status(500).send("Error fetching users");
+    }
+    // await User.userQuery().then(function (users) {
+    //     res.render('admin/users', { users })
+    // }).catch(function (e) {
+    //     console.log(e)
+    // })
 }
 
 exports.getUserById = async (req, res) => {

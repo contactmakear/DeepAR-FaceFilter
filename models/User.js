@@ -85,7 +85,7 @@ User.prototype.register = function () {
 
 User.userQuery = function () {
   return new Promise(async (resolve, reject) => {
-    let users = await usersCollection.find({}).toArray()
+    let users = await usersCollection.find({}).sort({ registeredDate: -1 }).toArray()
     resolve(users)
   })
 }
@@ -97,10 +97,17 @@ User.userById = function(userid) {
   })
 }
 
-User.deleteUser = async function(userid) {
+User.deleteUser = function(userid) {
   return new Promise(async (resolve, reject) => {
     let user = await usersCollection.deleteOne( {_id: new ObjectId(userid)} )
     resolve(user)
+  })
+}
+
+User.getUserCount = function() {
+  return new Promise(async (resolve, reject) => {
+    let count = await usersCollection.countDocuments()
+    resolve(count)
   })
 }
 
