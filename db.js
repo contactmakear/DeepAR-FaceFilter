@@ -11,7 +11,7 @@ async function start() {
 
     // Start the server
     const app = require("./server");
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || 8080, () => {
       console.log(`Server is live on port:${process.env.PORT}`);
     });
   } catch (error) {
