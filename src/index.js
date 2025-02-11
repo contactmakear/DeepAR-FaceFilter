@@ -59,7 +59,7 @@ if (document.querySelector('#ar-screen')) {
       "effects/HearMaterial.deepar",
       "effects/HearMaterial.deepar",
       "effects/HearMaterial.deepar",
-      "effects/HearMaterial.deepar",
+      "effects/RedHeartShape.deepar",
 
     ];
 
