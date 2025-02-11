@@ -6,6 +6,9 @@ const router = express.Router()
 
 router.get('/', userController.home)
 // router.get('/ar', userController.mustBeLoggedIn, userController.openAR)
+router.get('/getAr', (req, res) => {
+    res.render('ar')
+})
 
 router.get('/logout', userController.mustBeLoggedIn, (req, res) => {
     res.render('logout')
