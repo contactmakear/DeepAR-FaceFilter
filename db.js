@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 
 const client = new MongoClient(process.env.CONNECTIONSTRING);
 
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 async function start() {
   try {
@@ -13,8 +13,8 @@ async function start() {
 
     // Start the server
     const app = require("./server");
-    app.listen(port, () => {
-      console.log(`Server is live on port:${port}`);
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is live on port:${process.env.PORT}`);
     });
   } catch (error) {
     console.error("Failed to connect to the database:", error.message);
