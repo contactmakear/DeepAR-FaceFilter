@@ -7,7 +7,7 @@ const client = new MongoClient(process.env.CONNECTIONSTRING);
 
 async function start() {
   try {
-    await client.connect();
+    // await client.connect();
     console.log("Database connected successfully!");
     module.exports = client;
 
