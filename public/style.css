@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,800&display=swap');
+
 @font-face {
   font-family: "Gotham";
   src: url("../assets/font/Gotham-Black.otf");
@@ -324,7 +326,7 @@ body {
 }
 
 #share-screen {
-  background-image: url("./images/background-bg.png");
+  background-image: url("./images/download-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -339,22 +341,25 @@ body {
 }
 
 .photoframe {
-  transform: rotate(4.4deg);
   padding: 8px;
   position: relative;
   background-color: #eaeaea;
-  width: 80%;
-  height: 65%;
+  width: 80vw;
+  height: 110vw;
   border-radius: 15px;
   justify-content: center;
   align-items: flex-start;
   display: flex;
   filter: drop-shadow(8px 12px 18px black);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 22;
 }
 
 #share-image-container {
   display: flex;
-  height: 88%;
+  height: 100%;
   width: 100%;
   border-radius: 12px;
   background-size: 100%;
@@ -364,7 +369,7 @@ body {
 
 .Download {
   position: absolute;
-  bottom: 2dvh;
+  bottom: 4dvh;
   /* width: 100%; */
 }
 
@@ -436,28 +441,75 @@ body {
 
 .photoframe .head {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 90px;
+  top: 5%;
+  right: 3%;
+  width: 10vw;
 
 }
 
+.photoframe .heart-smilie {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 15vw;
+}
+
+
 .photoframe .glasses {
   position: absolute;
-  right: 0px;
-  bottom: 45px;
-  width: 100px;
+  right: -3%;
+  bottom: -3%;
+  width: 16vw;
 }
 
 .photoframe .qube {
   position: absolute;
-  left: 0px;
-  bottom: 45px;
-  width: 100px;
+  left: -7%;
+  bottom: -6%;
+  width: 36vw;
 }
 
 .photoframe .text_center {
   position: absolute;
   width: 80%;
   bottom: 12px;
+}
+
+.heart-top-right {
+  position: absolute;
+  top: 5%;
+  right: 0;
+  width: 28vw;
+}
+
+.heart-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35vw;
+}
+
+.heart-bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 25vw;
+}
+
+.heart-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 35vw;
+}
+
+.letsgosocial {
+  font-family: "Poppins", serif;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-size: 10vw;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  line-height: 0.9;
+  z-index: 20;
 }
