@@ -5,7 +5,9 @@ const { upload } = require("./src/imageHandler");
 const router = express.Router()
 
 router.get('/', userController.home)
+
 // router.get('/ar', userController.mustBeLoggedIn, userController.openAR)
+
 router.get('/getAr', (req, res) => {
     res.render('ar')
 })
