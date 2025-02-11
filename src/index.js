@@ -45,21 +45,21 @@ if (document.querySelector('#ar-screen')) {
     // Here we define the order of effect files.
 
     const effectList = [
-      "effects/viking_helmet.deepar",
-      "effects/Fire_Effect.deepar",
-      "effects/galaxy_background_web.deepar",
-      "effects/Hope.deepar",
-      "effects/Split_View_Look.deepar",
-      "effects/Neon_Devil_Horns.deepar",
-      "effects/Humanoid.deepar",
-      "effects/Vendetta_Mask.deepar",
-      "effects/Pixel_Hearts.deepar",
-      "effects/Stallone.deepar",
-      "effects/Shoes.deepar",
-      "effects/Ping_Pong.deepar",
-      "effects/Snail.deepar",
-      "effects/MakeupLook.deepar",
-      "effects/ray-ban-wayfarer.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HeartShapeRed.deepar",
+      "effects/lightRedShape.deepar",
+      "effects/QubeRedShape.deepar",
+      "effects/RedAvaitorShape.deepar",
+      "effects/RedGlassWhite1.deepar",
+      "effects/RedHeartShape.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/HearMaterial.deepar",
 
     ];
 
@@ -67,8 +67,8 @@ if (document.querySelector('#ar-screen')) {
 
     try {
       deepAR = await deepar.initialize({
-        licenseKey: "26f99e4a4c4526f420c18a101ef06d89a9aa64214c076cb765adc6ac6ea71985f974515335c431c8",
-        previewElement: document.querySelector('#ar-screen'),
+        licenseKey: "2a51777dc1f79fc3c597fb49c754394bf68f897727fb2cdc5d4177ea9976b5e2c682c0175655fff1",
+        previewElement,
         effect: effectList[0],
         rootPath: "./deepar-resources",
         additionalOptions: {
