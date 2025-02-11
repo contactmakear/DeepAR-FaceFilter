@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 async function start() {
   try {
-    await client.connect();
+    // await client.connect();
     console.log("Database connected successfully!");
     module.exports = client;
 
