@@ -45,13 +45,14 @@ if (document.querySelector('#ar-screen')) {
     // Here we define the order of effect files.
 
     const effectList = [
-      "effects/HearMaterial.deepar",
       "effects/HeartShapeRed.deepar",
-      "effects/lightRedShape.deepar",
-      "effects/QubeRedShape.deepar",
-      "effects/RedAvaitorShape.deepar",
-      "effects/RedGlassWhite1.deepar",
       "effects/RedHeartShape.deepar",
+      "effects/QubeRedShape.deepar",
+      "effects/HearMaterial.deepar",
+      "effects/RedGlassWhite1.deepar",
+      "effects/RedAvaitorShape.deepar",
+      "effects/lightRedShape.deepar",
+     
     ];
 
     let deepAR = null;
