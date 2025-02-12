@@ -52,15 +52,6 @@ if (document.querySelector('#ar-screen')) {
       "effects/RedAvaitorShape.deepar",
       "effects/RedGlassWhite1.deepar",
       "effects/RedHeartShape.deepar",
-      "effects/HearMaterial.deepar",
-      "effects/HearMaterial.deepar",
-      "effects/HearMaterial.deepar",
-      "effects/HearMaterial.deepar",
-      "effects/HearMaterial.deepar",
-      "effects/HearMaterial.deepar",
-      "effects/HearMaterial.deepar",
-      "effects/RedHeartShape.deepar",
-
     ];
 
     let deepAR = null;
