@@ -504,7 +504,7 @@ body {
 }
 
 .letsgosocial {
-  font-family: "Poppins", serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 800;
   color: #FFFFFF;
   font-size: 10vw;
@@ -512,4 +512,6 @@ body {
   padding-bottom: 0;
   line-height: 0.9;
   z-index: 20;
+  font-display: swap;
+  -webkit-text-stroke: 0.2px transparent;
 }

@@ -59,7 +59,7 @@ if (document.querySelector('#ar-screen')) {
 
     try {
       deepAR = await deepar.initialize({
-        licenseKey: "26f99e4a4c4526f420c18a101ef06d89a9aa64214c076cb765adc6ac6ea71985f974515335c431c8",
+        licenseKey: "2a51777dc1f79fc3c597fb49c754394bf68f897727fb2cdc5d4177ea9976b5e2c682c0175655fff1",
         previewElement,
         effect: effectList[0],
         rootPath: "./deepar-resources",
@@ -199,20 +199,41 @@ if (document.querySelector('#ar-screen')) {
   const imageFrame = document.getElementById("share-screen");
   var closeShareScreen = document.getElementById("close-share-screen");
 
+  // downloadPhoto.addEventListener("click", function () {
+  //   closeShareScreen.style.display = 'none';
+  //   downloadPhoto.style.display = 'none';
+
+  //   html2canvas(imageFrame).then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+
+  //     var link = document.createElement('a');
+  //     link.href = imgData;
+  //     link.download = "Social_Selfie.png";
+  //     link.click();
+  //     closeShareScreen.style.display = 'flex';
+  //   });
+  // });
+
+
   downloadPhoto.addEventListener("click", function () {
     closeShareScreen.style.display = 'none';
     downloadPhoto.style.display = 'none';
 
     html2canvas(imageFrame).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-
-      var link = document.createElement('a');
-      link.href = imgData;
-      link.download = "Social_Selfie.png";
-      link.click();
-      closeShareScreen.style.display = 'flex';
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = "Social_Selfie.png";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        }
+        closeShareScreen.style.display = 'flex';
+      }, "image/png");
     });
   });
-
 
 }
